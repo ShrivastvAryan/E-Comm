@@ -55,14 +55,14 @@ const Navbar=()=>{
      </div>
 
      <Avatar bg='blue.700' size='sm' />
-     </section>?
+     </section>
 
      <section className="w-screen h-[50%] block flex justify-around pt-3">
         <h1 className="font-semibold text-2xl"><Link href="/">Explore</Link></h1>
      <div>
      <Tabs index={getExploreIndex()}variant='soft-rounded' colorScheme='blue' size='sm' className="font-semibold text-black">
      <TabList >
-    <Tab fontWeight="semibold" color="black">All</Tab>*/}
+    <Tab fontWeight="semibold" color="black">All</Tab>
      <Tab as={Link} href="/men" fontWeight="semibold" color="black">Men</Tab>
      <Tab as={Link} href="/women" fontWeight="semibold" color="black">Women</Tab>
      </TabList>
