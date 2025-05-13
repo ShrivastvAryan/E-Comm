@@ -11,11 +11,11 @@ const Men=()=>{
    useEffect(()=>{
       const fetchtshirts=async()=>{
          try {
-            const response =await fetch("/data/tshirt.json")
-            const data= await response.json()
+            const response =await fetch("/data/tshirt.json");
+            const data= await response.json();
             setUseTshirt(data); 
          } catch (error) {
-            console.error("Failed fetchcing")
+            console.error("Failed fetchcing");
             
          }
       }
