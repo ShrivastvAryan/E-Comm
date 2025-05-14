@@ -1,3 +1,4 @@
+require("dotenv").config(); // compulsory for .env file
 const express=require('express');
 const mongoDb=require('./db')
 const app=express();
