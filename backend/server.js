@@ -1,10 +1,10 @@
 require("dotenv").config(); // compulsory for .env file
 const express=require('express');
-const mongoDb=require('./db')
+const connectDb=require('./db')
 const app=express();
 const PORT=5000;
 
-mongoDb.then(()=>{
+connectDb().then(()=>{
     app.listen(PORT,()=>{
         console.log(`server is running at ${PORT}`)
     });

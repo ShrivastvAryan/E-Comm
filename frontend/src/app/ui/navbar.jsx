@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import React from 'react';
-import { Tab,TabList,Tabs,Avatar,Divider} from "@chakra-ui/react";
+import { Tab,TabList,Tabs,Avatar,Divider,Menu,MenuButton,MenuList,Button,MenuGroup,MenuItem} from "@chakra-ui/react";
 import{CiShoppingCart} from "react-icons/ci";
 import { usePathname } from 'next/navigation';
 
@@ -54,7 +54,15 @@ const Navbar=()=>{
      <CiShoppingCart />
      </div>
 
+     <Menu>
+     <MenuButton as={Button} colorScheme=''>
      <Avatar bg='blue.700' size='sm' />
+     </MenuButton>
+     <MenuList>
+      <MenuItem as='a' href=''>Login</MenuItem>
+      <MenuItem as='a' href=''>Register </MenuItem>
+    </MenuList>
+     </Menu>
      </section>
 
      <section className="w-screen h-[50%] block flex justify-around pt-3">
