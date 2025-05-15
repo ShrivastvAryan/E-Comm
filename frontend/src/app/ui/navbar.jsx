@@ -59,13 +59,13 @@ const Navbar=()=>{
      <Avatar bg='blue.700' size='sm' />
      </MenuButton>
      <MenuList>
-      <MenuItem as='a' href=''>Login</MenuItem>
-      <MenuItem as='a' href=''>Register </MenuItem>
+      <MenuItem as={Link} href='/login'>Login</MenuItem>
+      <MenuItem as={Link} href='/register'>Register </MenuItem>
     </MenuList>
      </Menu>
      </section>
 
-     <section className="w-screen h-[50%] block flex justify-around pt-3">
+     <section className="w-screen h-[50%] flex justify-around pt-3">
         <h1 className="font-semibold text-2xl"><Link href="/">Explore</Link></h1>
      <div>
      <Tabs index={getExploreIndex()}variant='soft-rounded' colorScheme='blue' size='sm' className="font-semibold text-black">
