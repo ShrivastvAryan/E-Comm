@@ -6,9 +6,9 @@ import React from 'react';
 const Login=()=>{
     return(
         <>
-        <div className='w-screen h-screen mt-2 relative '>
-            <div className='w-[80vw] h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  rounded-md shadow-lg border-black'>
-            <p className='block text-center text-3xl font-semibold p-2'>Login</p>
+        <div className='w-screen h-auto mt-2 flex justify-center'>
+            <div className='w-[80vw] h-auto   rounded-md shadow-lg border-black'>
+            <p className='block text-center text-2xl font-semibold p-2 mt-4'>Login</p>
 
             <div>
                 <label  htmlFor="username" className='block  p-2 text-xl'>Username or Email</label>
