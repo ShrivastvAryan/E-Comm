@@ -4,6 +4,24 @@ import Link from 'next/link';
 import React from 'react';
 
 const Login=()=>{
+
+    const[user,setUser]=[{
+        email:"",
+        passoword:""
+    }]
+
+    const handleInput=(e)=>{
+        const{name,value}=e.target;
+        setUser(prevUser=>({
+            ...prevUser,
+            [name]:value
+        }))
+    }
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault()
+    }
+
     return(
         <>
         <div className='w-screen h-auto mt-2 flex justify-center'>
@@ -11,11 +29,13 @@ const Login=()=>{
             <p className='block text-center text-2xl font-semibold p-2 mt-4'>Login</p>
 
             <div>
-                <label  htmlFor="username" className='block  p-2 text-xl'>Username or Email</label>
+                <label  htmlFor="email" className='block  p-2 text-xl'>Username or Email</label>
                 <input type="text" name="email"
-                     placeholder="username"
+                     placeholder="email"
                      required
                      autoComplete="off"
+                     value={user.email}
+                     onChange={handleInput}
                     className=" m-2 p-1 bg-blue-100 rounded-md w-[90%]"/>
             </div>
             <label  htmlFor="password" className='block  p-2 text-xl'>Password</label>
@@ -23,6 +43,8 @@ const Login=()=>{
                      placeholder="password"
                      required
                      autoComplete="off"
+                     value={user.passoword}
+                     onChange={handleInput}
                     className=" m-2 bg-blue-100 p-1 rounded-md w-[90%]"/>
             <div>
 
