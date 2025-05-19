@@ -19,14 +19,39 @@ const Login=()=>{
     }
 
     const handleSubmit=async(e)=>{
-        e.preventDefault()
-    }
+        e.preventDefault();
+
+        try {
+            // Replace with your API endpoint
+            const response = await fetch('/api/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(user)
+            });
+      
+            const result = await response.json();
+            if (response.ok) {
+              alert('Login successful!');
+              // Optional: Reset form or redirect
+              setUser({ username: "", password: "" });
+            } else {
+              alert(`Error: ${result.message}`);
+            }
+          } catch (error) {
+            console.error("Error during registration:", error);
+            alert("An unexpected error occurred.");
+          }
+    };
 
     return(
         <>
         <div className='w-screen h-auto mt-2 flex justify-center'>
             <div className='w-[80vw] h-auto   rounded-md shadow-lg border-black'>
             <p className='block text-center text-2xl font-semibold p-2 mt-4'>Login</p>
+
+            <form onSubmit={handleSubmit}>
 
             <div>
                 <label  htmlFor="email" className='block  p-2 text-xl'>Username or Email</label>
@@ -54,6 +79,7 @@ const Login=()=>{
             </div>
 
             </div>
+            </form>
             </div>
 
         </div>
