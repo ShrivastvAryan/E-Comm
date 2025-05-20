@@ -13,7 +13,7 @@ const Filter=()=>{
                     <div className="w-full ml-2 bo">
                     <Select  size='xs' className="rounded-lg bg-blue-300">
                     <option value='option1'>High to Low</option>
-                    <option value='option2'>Low to High</option>
+                    <option value='option2'>Low to High </option>
                     </Select>
                     </div>
                 </div>
