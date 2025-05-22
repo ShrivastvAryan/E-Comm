@@ -1,151 +1,161 @@
 [
-      {
-        "id": 1,
-        "name": "Essential Cotton Tee",
-        "description": "Classic cotton t-shirt with a comfortable fit and soft feel. Perfect for everyday wear.",
-        "price": 24.99,
-        "image": "https://images.pexels.com/photos/5698851/pexels-photo-5698851.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["S", "M", "L", "XL"],
-        "colors": [
-          { "name": "Black", "hex": "#000000" },
-          { "name": "White", "hex": "#FFFFFF" },
-          { "name": "Navy", "hex": "#0A2463" }
-        ],
-        "inStock": true,
-        "category": "casual"
-      },
-      {
-        "id": 2,
-        "name": "Premium Organic Tee",
-        "description": "Eco-friendly t-shirt made from 100% organic cotton. Sustainable and stylish.",
-        "price": 34.99,
-        "image": "https://images.pexels.com/photos/6347919/pexels-photo-6347919.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
-        "colors": [
-          { "name": "Sage", "hex": "#B2AC88" },
-          { "name": "Terracotta", "hex": "#E2725B" },
-          { "name": "Stone", "hex": "#D3D0CB" }
-        ],
-        "inStock": true,
-        "category": "casual"
-      },
-      {
-        "id": 3,
-        "name": "Vintage Graphic Tee",
-        "description": "Retro-inspired graphic t-shirt with a vintage print. A statement piece for casual outings.",
-        "price": 29.99,
-        "image": "https://images.pexels.com/photos/5709661/pexels-photo-5709661.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["S", "M", "L"],
-        "colors": [
-          { "name": "Faded Black", "hex": "#3B3B3B" },
-          { "name": "Vintage Red", "hex": "#C23B22" }
-        ],
-        "inStock": true,
-        "category": "graphic"
-      },
-      {
-        "id": 4,
-        "name": "Performance Sport Tee",
-        "description": "Technical t-shirt designed for athletes. Features moisture-wicking fabric and ergonomic seams.",
-        "price": 39.99,
-        "image": "https://images.pexels.com/photos/5710144/pexels-photo-5710144.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["S", "M", "L", "XL"],
-        "colors": [
-          { "name": "Electric Blue", "hex": "#0077CC" },
-          { "name": "Neon Green", "hex": "#39FF14" },
-          { "name": "Hot Pink", "hex": "#FF69B4" }
-        ],
-        "inStock": true,
-        "category": "sports"
-      },
-      {
-        "id": 5,
-        "name": "Minimalist Logo Tee",
-        "description": "Clean design featuring a subtle logo. Modern aesthetic with premium quality cotton.",
-        "price": 27.99,
-        "image": "https://images.pexels.com/photos/7691119/pexels-photo-7691119.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["XS", "S", "M", "L"],
-        "colors": [
-          { "name": "White", "hex": "#FFFFFF" },
-          { "name": "Light Gray", "hex": "#D3D3D3" },
-          { "name": "Sand", "hex": "#C2B280" }
-        ],
-        "inStock": false,
-        "category": "casual"
-      },
-      {
-        "id": 6,
-        "name": "Slim Fit Henley",
-        "description": "Modern henley-style t-shirt with a slim fit. Features button detailing at the collar.",
-        "price": 32.99,
-        "image": "https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["S", "M", "L"],
-        "colors": [
-          { "name": "Charcoal", "hex": "#36454F" },
-          { "name": "Forest Green", "hex": "#228B22" },
-          { "name": "Burgundy", "hex": "#800020" }
-        ],
-        "inStock": true,
-        "category": "casual"
-      },
-      {
-        "id": 7,
-        "name": "Artistic Limited Edition Tee",
-        "description": "Collaboration with renowned artist featuring exclusive artwork. Limited production run.",
-        "price": 49.99,
-        "image": "https://images.pexels.com/photos/5709667/pexels-photo-5709667.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["M", "L", "XL"],
-        "colors": [
-          { "name": "Gallery White", "hex": "#F8F8FF" },
-          { "name": "Artist Black", "hex": "#000000" }
-        ],
-        "inStock": true,
-        "category": "graphic"
-      },
-      {
-        "id": 8,
-        "name": "Business Casual Tee",
-        "description": "Elevated t-shirt with refined details. Perfect for business casual environments or upscale casual occasions.",
-        "price": 44.99,
-        "image": "https://images.pexels.com/photos/6375823/pexels-photo-6375823.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["S", "M", "L", "XL", "XXL"],
-        "colors": [
-          { "name": "Executive Gray", "hex": "#808080" },
-          { "name": "Deep Blue", "hex": "#00008B" },
-          { "name": "Soft Black", "hex": "#121212" }
-        ],
-        "inStock": true,
-        "category": "formal"
-      },
-      {
-        "id": 9,
-        "name": "Oversized Street Style Tee",
-        "description": "Urban-inspired oversized fit with streetwear aesthetics. Features dropped shoulders and a relaxed silhouette.",
-        "price": 36.99,
-        "image": "https://images.pexels.com/photos/4246254/pexels-photo-4246254.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["M", "L", "XL", "XXL"],
-        "colors": [
-          { "name": "Washed Black", "hex": "#2C2C2C" },
-          { "name": "Concrete Gray", "hex": "#BCBCBC" },
-          { "name": "Desert Sand", "hex": "#EDC9AF" }
-        ],
-        "inStock": true,
-        "category": "casual"
-      },
-      {
-        "id": 10,
-        "name": "Luxury Pima Cotton Tee",
-        "description": "Premium t-shirt crafted from high-quality Pima cotton. Exceptionally soft with a subtle luster.",
-        "price": 54.99,
-        "image": "https://images.pexels.com/photos/5358099/pexels-photo-5358099.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "sizes": ["XS", "S", "M", "L", "XL"],
-        "colors": [
-          { "name": "Pearl White", "hex": "#F5F5F5" },
-          { "name": "Midnight Blue", "hex": "#191970" },
-          { "name": "Mahogany", "hex": "#C04000" },
-          { "name": "Olive", "hex": "#808000" }
-        ],
-        "inStock": true,
-        "category": "formal"
-      }
-    ]
+  {
+    "id": 1,
+    "name": "Essential Cotton Tee",
+    "description": "Classic cotton t-shirt with a comfortable fit and soft feel. Perfect for everyday wear.",
+    "price": 24.99,
+    "popularity": 75,
+    "image": "https://images.pexels.com/photos/5698851/pexels-photo-5698851.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": [
+      { "name": "Black", "hex": "#000000" },
+      { "name": "White", "hex": "#FFFFFF" },
+      { "name": "Navy", "hex": "#0A2463" }
+    ],
+    "inStock": true,
+    "category": "casual"
+  },
+  {
+    "id": 2,
+    "name": "Premium Organic Tee",
+    "description": "Eco-friendly t-shirt made from 100% organic cotton. Sustainable and stylish.",
+    "price": 34.99,
+    "popularity": 88,
+    "image": "https://images.pexels.com/photos/6347919/pexels-photo-6347919.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "colors": [
+      { "name": "Sage", "hex": "#B2AC88" },
+      { "name": "Terracotta", "hex": "#E2725B" },
+      { "name": "Stone", "hex": "#D3D0CB" }
+    ],
+    "inStock": true,
+    "category": "casual"
+  },
+  {
+    "id": 3,
+    "name": "Vintage Graphic Tee",
+    "description": "Retro-inspired graphic t-shirt with a vintage print. A statement piece for casual outings.",
+    "price": 29.99,
+    "popularity": 92,
+    "image": "https://images.pexels.com/photos/5709661/pexels-photo-5709661.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["S", "M", "L"],
+    "colors": [
+      { "name": "Faded Black", "hex": "#3B3B3B" },
+      { "name": "Vintage Red", "hex": "#C23B22" }
+    ],
+    "inStock": true,
+    "category": "graphic"
+  },
+  {
+    "id": 4,
+    "name": "Performance Sport Tee",
+    "description": "Technical t-shirt designed for athletes. Features moisture-wicking fabric and ergonomic seams.",
+    "price": 39.99,
+    "popularity": 81,
+    "image": "https://images.pexels.com/photos/5710144/pexels-photo-5710144.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": [
+      { "name": "Electric Blue", "hex": "#0077CC" },
+      { "name": "Neon Green", "hex": "#39FF14" },
+      { "name": "Hot Pink", "hex": "#FF69B4" }
+    ],
+    "inStock": true,
+    "category": "sports"
+  },
+  {
+    "id": 5,
+    "name": "Minimalist Logo Tee",
+    "description": "Clean design featuring a subtle logo. Modern aesthetic with premium quality cotton.",
+    "price": 27.99,
+    "popularity": 68,
+    "image": "https://images.pexels.com/photos/7691119/pexels-photo-7691119.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": [
+      { "name": "White", "hex": "#FFFFFF" },
+      { "name": "Light Gray", "hex": "#D3D3D3" },
+      { "name": "Sand", "hex": "#C2B280" }
+    ],
+    "inStock": false,
+    "category": "casual"
+  },
+  {
+    "id": 6,
+    "name": "Slim Fit Henley",
+    "description": "Modern henley-style t-shirt with a slim fit. Features button detailing at the collar.",
+    "price": 32.99,
+    "popularity": 70,
+    "image": "https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["S", "M", "L"],
+    "colors": [
+      { "name": "Charcoal", "hex": "#36454F" },
+      { "name": "Forest Green", "hex": "#228B22" },
+      { "name": "Burgundy", "hex": "#800020" }
+    ],
+    "inStock": true,
+    "category": "casual"
+  },
+  {
+    "id": 7,
+    "name": "Artistic Limited Edition Tee",
+    "description": "Collaboration with renowned artist featuring exclusive artwork. Limited production run.",
+    "price": 49.99,
+    "popularity": 98,
+    "image": "https://images.pexels.com/photos/5709667/pexels-photo-5709667.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["M", "L", "XL"],
+    "colors": [
+      { "name": "Gallery White", "hex": "#F8F8FF" },
+      { "name": "Artist Black", "hex": "#000000" }
+    ],
+    "inStock": true,
+    "category": "graphic"
+  },
+  {
+    "id": 8,
+    "name": "Business Casual Tee",
+    "description": "Elevated t-shirt with refined details. Perfect for business casual environments or upscale casual occasions.",
+    "price": 44.99,
+    "popularity": 65,
+    "image": "https://images.pexels.com/photos/6375823/pexels-photo-6375823.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": [
+      { "name": "Executive Gray", "hex": "#808080" },
+      { "name": "Deep Blue", "hex": "#00008B" },
+      { "name": "Soft Black", "hex": "#121212" }
+    ],
+    "inStock": true,
+    "category": "formal"
+  },
+  {
+    "id": 9,
+    "name": "Oversized Street Style Tee",
+    "description": "Urban-inspired oversized fit with streetwear aesthetics. Features dropped shoulders and a relaxed silhouette.",
+    "price": 36.99,
+    "popularity": 86,
+    "image": "https://images.pexels.com/photos/4246254/pexels-photo-4246254.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["M", "L", "XL", "XXL"],
+    "colors": [
+      { "name": "Washed Black", "hex": "#2C2C2C" },
+      { "name": "Concrete Gray", "hex": "#BCBCBC" },
+      { "name": "Desert Sand", "hex": "#EDC9AF" }
+    ],
+    "inStock": true,
+    "category": "casual"
+  },
+  {
+    "id": 10,
+    "name": "Luxury Pima Cotton Tee",
+    "description": "Premium t-shirt crafted from high-quality Pima cotton. Exceptionally soft with a subtle luster.",
+    "price": 54.99,
+    "popularity": 94,
+    "image": "https://images.pexels.com/photos/5358099/pexels-photo-5358099.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": [
+      { "name": "Pearl White", "hex": "#F5F5F5" },
+      { "name": "Midnight Blue", "hex": "#191970" },
+      { "name": "Mahogany", "hex": "#C04000" },
+      { "name": "Olive", "hex": "#808000" }
+    ],
+    "inStock": true,
+    "category": "formal"
+  }
+]
