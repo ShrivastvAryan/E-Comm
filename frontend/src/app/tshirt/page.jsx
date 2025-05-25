@@ -20,9 +20,11 @@ const Men = () => {
         const response = await fetch("/data/tshirt.json");
         const data = await response.json();
         setUseTshirt(data);
+
       } catch (error) {
         console.error("Failed fetching");
       }
+
     };
     fetchtshirts();
   }, []);
@@ -74,7 +76,7 @@ const Men = () => {
       <div className="w-screen h-auto flex justify-center items-center pt-4 pb-1">
         <div className="w-[90vw] h-auto rounded-md flex flex-col ">
           <div className="h-auto w-full p-2 flex flex-row">
-            Price:
+            Price: up to down
             <div className="w-full ml-2">
               <Select
                 size="xs"
