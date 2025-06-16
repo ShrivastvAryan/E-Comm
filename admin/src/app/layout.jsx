@@ -1,6 +1,6 @@
 import "./globals.css";
-import { Providers } from './providers'
-import Navbar from "./ui/navbar";
+import { Providers } from "../../components/providers";
+import Navbar from "./UI/navbar";
 
 export const metadata = {
   title: "E-Comm",
@@ -12,8 +12,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="overflow-x-hidden"
       >
-         <Providers>
-         <Navbar/>
+        <Navbar/>
+        <Providers>
         {children}
         </Providers>
       </body>
