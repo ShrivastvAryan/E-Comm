@@ -2,7 +2,8 @@
 import React from "react";
 import { useState } from "react";
 import upload from "../../../public/upload.png"
-
+import Sidebar from "./sidebar";
+import Link from "next/link";
 
 const Hero=()=>{
 
@@ -10,7 +11,7 @@ const Hero=()=>{
     const[productDetails,setProductDetails]=useState({
         name:"",
         image:"",
-        category:"women",
+        category:"Men",
         new_price:"",
         old_price:""
     })
@@ -24,19 +25,49 @@ const Hero=()=>{
     }
 
     const addProduct=async()=>{
+        console.log(productDetails);
+        let responseData;
+        let product=productDetails;
+        
+        let formData= new FormData();
+        formData.append('product',image);
 
+        await fetch('http://localhost:5000/upload',{
+            method:'POST',
+            headers:{
+                Accept:'application/json',
+            },
+            body:formData,
+        }).then((resp)=>resp.json()).then((data)=>{responseData=data});
+
+        if(responseData.success){
+            product.image=responseData.image_url;
+            console.log(product);
+            await fetch('http://localhost:5000/addproduct',{
+                method:'POST',
+                headers:{
+                    Accept:'application/json',
+                   'Content-Type':'application/json',
+
+                },
+                body:JSON.stringify(product),
+                
+            }).then ((resp)=>resp.json()).then((data)=>{
+                data.success?alert("Product added"):alert("Failed")
+            })
+        }
     }
     return(
         <>
         <div>
             <div className="flex">
-                <div className="h-screen w-[20%] ">
-                    <div className="w-auto h-auto bg-blue-300 inline-block p-4 m-5 rounded-md font-semibold cursor-pointer">Add Product</div>
-                    <div className="w-auto h-auto bg-blue-300 inline-block p-4 m-5 rounded-md font-semibold cursor-pointer">Product List</div>
-                </div>
+
+            <div className="h-screen w-[20%]">
+            <Sidebar />
+            </div>
 
                 <div className="h-screen w-[80%] bg-slate-300">
-                    <form className=" p-10 h-auto w-auto bg-white m-5 rounded-md">
+                    <form className=" p-10 h-auto w-auto bg-white m-5 rounded-md" onSubmit={(e) => e.preventDefault()}>
 
                         <div className="h-auto w-auto  ">
                         <span className="font-semibold text-xl">Product Title: </span>
@@ -53,31 +84,42 @@ const Hero=()=>{
 
                             <div className="h-auto w-auto mt-10">
                             <span className="font-semibold text-xl">Price: </span>
-                            <input value={productDetails.old_price} onChange={changeHandler} type="text" name="price" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/>
+                            <input value={productDetails.old_price} onChange={changeHandler} type="text" name="old_price" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/>
                             </div>
-
+                            {/*name and value ka name should be same */}
                             <div className="h-auto w-auto mt-10">
                             <span className="font-semibold text-xl">Offer Price: </span>
-                            <input value={productDetails.new_price} onChange={changeHandler} type="text" name="offer price" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/>
+                            <input value={productDetails.new_price} onChange={changeHandler} type="text" name="new_price" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/> 
                             </div> 
 
-                             <div className="h-auto w-auto mt-10">
-                            <span className="font-semibold text-xl">File Input: </span>
-                            <label htmlFor="file-input">
-                            <img src ={image?URL.createObjectURL(image):upload} className="h-36 w-36 mt-2 object-contain"/>
-                            </label>
-                            <input onChange={imageHandler} type="file" name="image" id="file-input " placeholder="Type here"  className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 mt-2"/>
-                            </div> 
+                           <div className="h-auto w-auto mt-10">
+                           <span className="font-semibold text-xl">File Input: </span>
+                           <label htmlFor="file-input">
+                           <img
+                           src={image ? URL.createObjectURL(image) : upload}
+                           className="h-36 w-36 mt-2 object-contain cursor-pointer"
+                           alt="Preview"
+                           />
+                           </label>
+                          <input
+                          onChange={imageHandler}
+                          type="file"
+                          name="image"
+                          id="file-input"
+                          className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 mt-2"
+                          hidden
+                          />
+                          </div>
 
                              <div className="h-auto w-auto mt-10">
-                           <button className="p-3 text-white font-semibold rounded-md w-24 block bg-blue-500">Add</button>
+                           <button onClick={()=>{addProduct()}}className="p-3 text-white font-semibold rounded-md w-24 block bg-blue-500">Add</button>
                             </div> 
 
                         </div>
                     </form>
                 </div>
+                </div>
             </div>
-        </div>
         </>
     )
 }

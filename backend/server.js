@@ -76,13 +76,13 @@ const Product=mongoose.model("Product",{
 app.post ('/addproduct',async(req,res)=>{
     let products=await Product.find({});
     let id;
-    if(product.length>0){
+    if(products.length>0){
         let last_product_array=products.slice(-1);
         let last_product=last_product_array[0];
         id=last_product.id+1;
     }
     else{
-        id:1;
+        id=1;
     }
     const product=new Product({
         id:id,
