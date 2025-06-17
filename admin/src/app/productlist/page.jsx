@@ -18,6 +18,19 @@ const AllProduct=()=>{
         fetchInfo();
     },[])
 
+    const RemoveProduct=async(id)=>{
+        await fetch('http://localhost:5000/removeproduct',{
+            method:'POST',
+            headers:{
+                Accept:'application/json',
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({id:id})
+        })
+
+        await fetchInfo();
+    }
+
     return(
         <>
         <div className="flex">
@@ -39,7 +52,7 @@ const AllProduct=()=>{
                     <p className="text-xl mt-2">Original Price: ${product.old_price}</p>
                     <p className="text-xl">Offer Price: ${product.new_price}</p>
                     <p className="text-xl">Category: {product.category}</p>
-                    <img src=""></img>
+                    <button onClick={()=>{RemoveProduct(product.id)}} className="bg-red-700 p-1 rounded-md text-white mt-4">Remove</button>
                     </div>
                     <div>
                         <img src={product.image} alt="preview-image" className="h-40 w-40 object-contain"/>

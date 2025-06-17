@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import upload from "../../../public/upload.png"
 import Sidebar from "./sidebar";
-import Link from "next/link";
 
 const Hero=()=>{
 
