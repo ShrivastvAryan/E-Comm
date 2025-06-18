@@ -7,14 +7,53 @@ import{useNavigate} from "react-router-dom"
 
 const Register=()=>{
 
-    const[state,setState]=useState("Signup")
+    const[state,setState]=useState("Signup");
+    const[formData,setFormData]=useState({
+      username:"",
+      password:"",
+      email:""
+    });
+
+    const changeHandler=(e)=>{
+      setFormData({...formData,[e.target.name]:e.target.value})
+    }
+
+    const login=async()=>{
+      console.log("Login function executed",formData)
+    }
     
+    const signup=async()=>{
+      console.log("SignUp Function executed",formData)
+      let responseData;
+      await fetch("http://localhost:5000/signup",{
+        method:"POST",
+        headers:{
+          Accept:"application/form-data",
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(formData),
+      }).then((response)=>response.json()).then((data)=>responseData=data)
+
+      if(responseData.success){
+        localStorage.setItem('auth-token',responseData.token);
+        window.location.replace("/");
+      }
+      else{
+        alert(responseData.errors||"Signup Failed") //Need to integrate the error
+      }
+    }
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    state === "Login" ? login() : signup();
+  };
+
     return(
        <div className='w-full min-h-screen flex justify-center items-start sm:items-center px-2 bg-slate-200'>
       <div className='w-full sm:w-[90%] md:w-[70%] lg:w-[40%] bg-white rounded-md shadow-lg border border-black p-4'>
         <p className='text-center text-2xl font-semibold mb-4'>{state}</p>
 
-        <form className='space-y-4 bg-white'>
+        <form className='space-y-4 bg-white' onSubmit={handleSubmit}>
 
          {state==="Signup"? <div>
             <label htmlFor='name' className='block text-lg sm:text-xl mb-1'>Enter Your Name</label>
@@ -22,6 +61,8 @@ const Register=()=>{
               type="text"
               name="username"
               placeholder="username"
+              value={formData.username}
+              onChange={changeHandler}
               required
               autoComplete="off"
               className="w-full p-2 bg-blue-100 rounded-md"
@@ -34,6 +75,8 @@ const Register=()=>{
               type="text"
               name="email"
               placeholder="email"
+              value={formData.email}
+              onChange={changeHandler}
               required
               autoComplete="off"
               
@@ -47,6 +90,8 @@ const Register=()=>{
               type="password"
               name="password"
               placeholder="password"
+              value={formData.password}
+              onChange={changeHandler}
               required
               autoComplete="off"
               
@@ -55,13 +100,13 @@ const Register=()=>{
           </div>
 
           <div className='flex justify-center pt-2'>
-            <Button type='submit' colorScheme='blue' size='sm' className='w-full sm:w-auto'>
-              Create Account
+            <Button type='submit' colorScheme='blue' size='sm' className='w-full sm:w-auto' onClick={()=>{state==="login"?login():signup()}}>
+              Continue
             </Button>
           </div>
           {state==="Signup"?
-          <p>Already have an account? <span>Login Here</span> </p>:
-          <p>Create an account<span>Click Here</span> </p>
+          <p>Already have an account? <span onClick={()=>{setState("Login")}} className='text-blue-600 font-bold cursor-pointer'>Login Here</span> </p>:
+          <p>Create an account<span onClick={()=>{setState("Signup")}}className='text-blue-600 font-bold cursor-pointer' > Click Here</span> </p>
           }
           
         </form>
