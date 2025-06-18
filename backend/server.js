@@ -180,28 +180,28 @@ app.post('/signup',async(req,res)=>{
 })
 
 //Creating EndPoint for User Login
-app.post('/login',async(req,res)=>{
+app.post('/login', async (req, res) => {
+    const user = await Users.findOne({ email: req.body.email });
 
-    let user=await Users.findOne({email:req.body.email});
+    if (!user) {
+        return res.json({ success: false, error: "User not found" });
+    }
 
-    if(user){
-        const passCompare= req.body.password===user.password;
-        if (passCompare){
-            const data={
-                user:{
-                    id:user.id
-                }
-            }
+    const passCompare = req.body.password === user.password; // use bcrypt in production
+
+    if (!passCompare) {
+        return res.json({ success: false, error: "Wrong password" });
+    }
+
+    const data = {
+        user: {
+            id: user.id
         }
+    };
 
-        const token=jwt.sign(data,'secret_ecom');
-        res.json({success:true,token});
-    }
-
-    else{
-        res.json({success:false,error:"Wrong Password"});
-    }
-})
+    const token = jwt.sign(data, 'secret_ecom');
+    return res.json({ success: true, token });
+});
 
 //API creation 
 
