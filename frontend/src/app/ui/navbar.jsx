@@ -41,38 +41,48 @@ const Navbar=()=>{
 
 <div className="w-screen h-[20%]">
 
-     <section className="w-screen h-[50%] flex flex-row justify-evenly pt-4 p-1">
+     <section className="w-[90vw] h-[50%] flex flex-row pt-4 mx-auto">
      
-     <Tabs index={getTabIndex()} variant='soft-rounded' colorScheme='blue' className="font-semibold text-black" size='sm'>
+     {/*<Tabs index={getTabIndex()} variant='soft-rounded' colorScheme='blue' className="font-semibold text-black" size='sm'>
      <TabList >
      <Tab as={Link} href="/" fontWeight="semibold" color="black">Dashboard</Tab>
      <Tab as={Link} href="/shopping" fontWeight="semibold" color="black">Shopping</Tab>
      </TabList>
-     </Tabs>
-  
-     <div className="w-8 h-8 rounded-full flex justify-center items-center text-4xl">
+     </Tabs>*/}
+
+     <div className='w-32 h-auto bg-red-400'>
+
+     </div>
+    
+     
+     <div className="w-10 h-10  rounded-full flex justify-center items-center text-4xl ml-auto">
      <CiShoppingCart />
      </div>
 
-     <Menu>
+    
+     <Menu >
      <MenuButton as={Button} colorScheme=''>
-     <Avatar bg='blue.700' size='sm' />
+       <div className='lg:text-xl'>
+     <Avatar bg='blue.700' size="sm" />
+     </div>
      </MenuButton>
      <MenuList>
       <MenuItem as={Link} href='/login'>Login</MenuItem>
       <MenuItem as={Link} href='/register'>Register </MenuItem>
     </MenuList>
      </Menu>
+     
+
      </section>
 
-     <section className="w-screen h-[50%] flex justify-around pt-3">
-        <h1 className="font-semibold text-2xl"><Link href="/">Explore</Link></h1>
+     <section className="w-[90vw] h-[50%] flex justify-between pt-3 mx-auto">
+        <h1 className="font-semibold text-2xl pr-4 lg:text-5xl"><Link href="/">Explore</Link></h1>
      <div>
      <Tabs index={getExploreIndex()}variant='soft-rounded' colorScheme='blue' size='sm' className="font-semibold text-black">
-     <TabList >
-    <Tab fontWeight="semibold" color="black">All</Tab>
-     <Tab as={Link} href="/men" fontWeight="semibold" color="black">Men</Tab>
-     <Tab as={Link} href="/women" fontWeight="semibold" color="black">Women</Tab>
+     <TabList>
+    <Tab fontWeight="semibold" color="black"><p className='lg:text-xl lg:p-2'>Men</p></Tab>
+     <Tab  fontWeight="semibold" color="black"><p className='lg:text-xl lg:p-2'>Women</p></Tab>
+     <Tab fontWeight="semibold" color="black"><p className='lg:text-xl lg:p-2'>Kids</p></Tab>
      </TabList>
      </Tabs>
      </div>
