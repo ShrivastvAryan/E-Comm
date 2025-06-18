@@ -62,13 +62,11 @@ const Navbar=()=>{
     
      <Menu >
      <MenuButton as={Button} colorScheme=''>
-       <div className='lg:text-xl'>
      <Avatar bg='blue.700' size="sm" />
-     </div>
      </MenuButton>
      <MenuList>
-      <MenuItem as={Link} href='/login'>Login</MenuItem>
-      <MenuItem as={Link} href='/register'>Register </MenuItem>
+      <MenuItem as={Link} href='/login'><p className='font-semibold lg:text-xl'>Login</p></MenuItem>
+      <MenuItem as={Link} href='/register'><p className='font-semibold lg:text-xl'>Register</p></MenuItem>
     </MenuList>
      </Menu>
      

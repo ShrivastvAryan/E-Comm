@@ -52,62 +52,79 @@ const Register=()=>{
 
     
     return(
-        <>
-        <div className='w-screen h-auto mt-2  flex justify-center '>
-          <div className='w-[80vw] h-auto rounded-md shadow-lg border-black mt-4'>
-          <p className='block text-center text-2xl font-semibold p-2'>Register</p>
+       <div className='w-full min-h-screen mt-4 flex justify-center items-start sm:items-center px-2'>
+      <div className='w-full sm:w-[90%] md:w-[70%] lg:w-[40%] bg-white rounded-md shadow-lg border border-black p-4'>
+        <p className='text-center text-2xl font-semibold mb-4'>Register</p>
 
-          <form onSubmit={handleSubmit}>
-
-          <label htmlFor='name' className='block  p-2 text-xl'>Enter Your Name</label>
-            <input type="text" name="username"
-                     placeholder="username"
-                     required
-                     autoComplete="off"
-                     value={user.username}
-                     onChange={handleInput}
-                    className=" m-2 p-1 bg-blue-100 rounded-md w-[90%]"/>
-
-         <label htmlFor='phone' className='block  p-2 text-xl'>Enter Your Phone No.</label>
-            <input type="text" name="phone"
-                     placeholder="+91"
-                     required
-                     autoComplete="off"
-                     value={user.phone}
-                     onChange={handleInput}
-                    className=" m-2 p-1 bg-blue-100 rounded-md w-[90%]"/>
+        <form onSubmit={handleSubmit} className='space-y-4'>
 
           <div>
-            <label htmlFor='email' className='block  p-2 text-xl'>Email</label>
-            <input type="text" name="email"
-                     placeholder="email"
-                     required
-                     autoComplete="off"
-                     value={user.email}
-                     onChange={handleInput}
-                    className=" m-2 p-1 bg-blue-100 rounded-md w-[90%]"/>
+            <label htmlFor='name' className='block text-lg sm:text-xl mb-1'>Enter Your Name</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              required
+              autoComplete="off"
+              value={user.username}
+              onChange={handleInput}
+              className="w-full p-2 bg-blue-100 rounded-md"
+            />
           </div>
 
-          <label  htmlFor="password" className='block  p-2 text-xl'> Create Password</label>
-            <input type="password" name="password"
-                     placeholder="password"
-                     required
-                     autoComplete="off"
-                     user={user.password}
-                     onChange={handleInput}
-                    className=" m-2 bg-blue-100 p-1 rounded-md w-[90%]"/>
-
-          <div className='w-full flex items-center justify-center p-2 '>
-                <Button type='submit' colorScheme='blue' size='sm' className='mb-3'>Create Account </Button>
+          <div>
+            <label htmlFor='phone' className='block text-lg sm:text-xl mb-1'>Enter Your Phone No.</label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="+91"
+              required
+              autoComplete="off"
+              value={user.phone}
+              onChange={handleInput}
+              className="w-full p-2 bg-blue-100 rounded-md"
+            />
           </div>
 
-          </form>
-
+          <div>
+            <label htmlFor='email' className='block text-lg sm:text-xl mb-1'>Email</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              required
+              autoComplete="off"
+              value={user.email}
+              onChange={handleInput}
+              className="w-full p-2 bg-blue-100 rounded-md"
+            />
           </div>
-        </div>
 
-        </>
-    )
-}
+          <div>
+            <label htmlFor='password' className='block text-lg sm:text-xl mb-1'>Create Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+              autoComplete="off"
+              value={user.password}
+              onChange={handleInput}
+              className="w-full p-2 bg-blue-100 rounded-md"
+            />
+          </div>
 
-export default Register
+          <div className='flex justify-center pt-2'>
+            <Button type='submit' colorScheme='blue' size='sm' className='w-full sm:w-auto'>
+              Create Account
+            </Button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
+       

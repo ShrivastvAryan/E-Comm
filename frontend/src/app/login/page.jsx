@@ -46,45 +46,52 @@ const Login=()=>{
     };
 
     return(
-        <>
-        <div className='w-screen h-auto mt-2 flex justify-center'>
-            <div className='w-[80vw] h-auto   rounded-md shadow-lg border-black'>
-            <p className='block text-center text-2xl font-semibold p-2 mt-4'>Login</p>
+       <div className='w-full min-h-screen mt-4 flex justify-center items-start sm:items-center px-2'>
+      <div className='w-full sm:w-[90%] md:w-[70%] lg:w-[70%] lg:h-[50%] bg-white rounded-md shadow-lg border border-black p-4'>
+        <p className='text-center text-2xl font-semibold mb-4'>Login</p>
 
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <div className='mb-4'>
+            <label htmlFor="email" className='block text-lg sm:text-xl mb-1'>
+              Username or Email
+            </label>
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              required
+              autoComplete="off"
+              value={user.email}
+              onChange={handleInput}
+              className="w-full p-2 bg-blue-100 rounded-md"
+            />
+          </div>
 
-            <div>
-                <label  htmlFor="email" className='block  p-2 text-xl'>Username or Email</label>
-                <input type="text" name="email"
-                     placeholder="email"
-                     required
-                     autoComplete="off"
-                     value={user.email}
-                     onChange={handleInput}
-                    className=" m-2 p-1 bg-blue-100 rounded-md w-[90%]"/>
-            </div>
-            <label  htmlFor="password" className='block  p-2 text-xl'>Password</label>
-            <input type="password" name="password"
-                     placeholder="password"
-                     required
-                     autoComplete="off"
-                     value={user.passoword}
-                     onChange={handleInput}
-                    className=" m-2 bg-blue-100 p-1 rounded-md w-[90%]"/>
-            <div>
+          <div className='mb-6'>
+            <label htmlFor="password" className='block text-lg sm:text-xl mb-1'>
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+              autoComplete="off"
+              value={user.password}
+              onChange={handleInput}
+              className="w-full p-2 bg-blue-100 rounded-md"
+            />
+          </div>
 
-
-            <div className='w-full flex items-center justify-center p-2 '>
-            <Button colorScheme='blue' size='sm' className='mb-3'>Login </Button>
-            </div>
-
-            </div>
-            </form>
-            </div>
-
-        </div>
-        </>
-    )
-}
+          <div className='flex justify-center'>
+            <Button colorScheme='blue' size='sm' className='w-full sm:w-auto'>
+              Login
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default Login;
