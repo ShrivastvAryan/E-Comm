@@ -42,35 +42,19 @@ const Navbar=()=>{
 <div className="w-screen h-[20%]">
 
      <section className="w-[90vw] h-[50%] flex flex-row pt-4 mx-auto">
-     
-     {/*<Tabs index={getTabIndex()} variant='soft-rounded' colorScheme='blue' className="font-semibold text-black" size='sm'>
-     <TabList >
-     <Tab as={Link} href="/" fontWeight="semibold" color="black">Dashboard</Tab>
-     <Tab as={Link} href="/shopping" fontWeight="semibold" color="black">Shopping</Tab>
-     </TabList>
-     </Tabs>*/}
 
      <div className='w-32 h-auto bg-red-400'>
 
      </div>
     
-     
      <div className="w-10 h-10  rounded-full flex justify-center items-center text-4xl ml-auto">
      <CiShoppingCart />
      </div>
-
-    
-     <Menu >
-     <MenuButton as={Button} colorScheme=''>
-     <Avatar bg='blue.700' size="sm" />
-     </MenuButton>
-     <MenuList>
-      <MenuItem as={Link} href='/login'><p className='font-semibold lg:text-xl'>Login</p></MenuItem>
-      <MenuItem as={Link} href='/register'><p className='font-semibold lg:text-xl'>Register</p></MenuItem>
-    </MenuList>
-     </Menu>
+  
+      {localStorage.getItem(`auth-token`)
+      ?<button onClick={()=>{localStorage.removeItem(`auth-token`); window.location.replace('/')}} className='p-1 rounded-lg bg-blue-200 ml-2 pl-2 pr-2'>Logout</button>
+      : <button as={Link} href='/register' className='p-1 rounded-lg bg-blue-200 ml-2 pl-2 pr-2'>Login</button>}
      
-
      </section>
 
      <section className="w-[90vw] h-[50%] flex justify-between pt-3 mx-auto">
@@ -78,9 +62,9 @@ const Navbar=()=>{
      <div>
      <Tabs index={getExploreIndex()}variant='soft-rounded' colorScheme='blue' size='sm' className="font-semibold text-black">
      <TabList>
-    <Tab fontWeight="semibold" color="black"><p className='lg:text-xl lg:p-2'>Men</p></Tab>
-     <Tab  fontWeight="semibold" color="black"><p className='lg:text-xl lg:p-2'>Women</p></Tab>
-     <Tab fontWeight="semibold" color="black"><p className='lg:text-xl lg:p-2'>Kids</p></Tab>
+    <Tab fontWeight="semibold" color="black"><p className='lg:text-md lg:p-2'>Men</p></Tab>
+     <Tab  fontWeight="semibold" color="black"><p className='lg:text-md lg:p-2'>Women</p></Tab>
+     <Tab fontWeight="semibold" color="black"><p className='lg:text-md lg:p-2'>Kids</p></Tab>
      </TabList>
      </Tabs>
      </div>
