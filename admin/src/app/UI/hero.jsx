@@ -59,69 +59,108 @@ const Hero=()=>{
     }
     return(
         <>
-        <div>
-            <div className="flex">
+       <div>
+  <div className="flex flex-col lg:flex-row">
+    {/* Sidebar */}
+    <div className="w-full lg:w-1/5 h-auto lg:h-screen">
+      <Sidebar />
+    </div>
 
-            <div className="h-screen w-[20%]">
-            <Sidebar />
+    {/* Form Area */}
+    <div className="w-full lg:w-4/5 bg-slate-300 min-h-screen">
+      <form
+        className="p-5 md:p-10 bg-white m-2 md:m-5 rounded-md"
+        onSubmit={(e) => e.preventDefault()}
+      >
+        {/* Product Title */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">Product Title:</span>
+          <input
+            value={productDetails.name}
+            onChange={changeHandler}
+            type="text"
+            name="name"
+            placeholder="Type here"
+            className="w-full md:w-[60%] text-sm bg-blue-100 rounded-md p-2"
+          />
+        </div>
+
+        {/* Category */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">Product Category:</span>
+          <select
+            value={productDetails.category}
+            onChange={changeHandler}
+            name="category"
+            className="p-2 font-semibold text-sm bg-blue-100 rounded-sm"
+          >
+            <option>men</option>
+            <option>women</option>
+            <option>kids</option>
+          </select>
+        </div>
+
+        {/* Old Price */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">Price:</span>
+          <input
+            value={productDetails.old_price}
+            onChange={changeHandler}
+            type="text"
+            name="old_price"
+            placeholder="Type here"
+            className="w-full md:w-[60%] text-sm bg-blue-100 rounded-md p-2"
+          />
+        </div>
+
+        {/* Offer Price */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">Offer Price:</span>
+          <input
+            value={productDetails.new_price}
+            onChange={changeHandler}
+            type="text"
+            name="new_price"
+            placeholder="Type here"
+            className="w-full md:w-[60%] text-sm bg-blue-100 rounded-md p-2"
+          />
+        </div>
+
+        {/* Image Input */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">File Input:</span>
+          <label htmlFor="file-input" className="cursor-pointer block">
+            <div className="h-36 w-36 object-contain relative">
+              <Image
+                src={image ? URL.createObjectURL(image) : upload}
+                alt="Preview"
+                fill
+              />
             </div>
+          </label>
+          <input
+            onChange={imageHandler}
+            type="file"
+            name="image"
+            id="file-input"
+            hidden
+          />
+        </div>
 
-                <div className="h-screen w-[80%] bg-slate-300">
-                    <form className=" p-10 h-auto w-auto bg-white m-5 rounded-md" onSubmit={(e) => e.preventDefault()}>
+        {/* Add Button */}
+        <div className="mt-6">
+          <button
+            onClick={() => addProduct()}
+            className="p-3 text-white font-semibold rounded-md w-full sm:w-24 bg-blue-500"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-                        <div className="h-auto w-auto  ">
-                        <span className="font-semibold text-xl">Product Title: </span>
-                        <input value={productDetails.name} onChange={changeHandler}type="text" name="name" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/>
-                        </div>
-
-                        <div className="h-auto w-auto mt-10">
-                            <span className="font-semibold text-xl">Product Category: </span>
-                            <select value={productDetails.category} onChange={changeHandler} name="category" className="p-2 font-semibold text-xs ml-2 bg-blue-100 rounded-sm ">
-                                <option>men</option>
-                                <option>women</option>
-                                <option>kids</option>
-                            </select>
-
-                            <div className="h-auto w-auto mt-10">
-                            <span className="font-semibold text-xl">Price: </span>
-                            <input value={productDetails.old_price} onChange={changeHandler} type="text" name="old_price" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/>
-                            </div>
-                            {/*name and value ka name should be same */}
-                            <div className="h-auto w-auto mt-10">
-                            <span className="font-semibold text-xl">Offer Price: </span>
-                            <input value={productDetails.new_price} onChange={changeHandler} type="text" name="new_price" placeholder="Type here" className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 ml-2"/> 
-                            </div> 
-
-                           <div className="h-auto w-auto mt-10">
-                           <span className="font-semibold text-xl">File Input: </span>
-                           <label htmlFor="file-input">
-                          <div  className="h-36 w-36 mt-2 object-contain cursor-pointer relative">
-                           <Image
-                           src={image ? URL.createObjectURL(image) : upload}
-                           alt="Preview"
-                           fill
-                           />
-                           </div>
-                           </label>
-                          <input
-                          onChange={imageHandler}
-                          type="file"
-                          name="image"
-                          id="file-input"
-                          className="w-[20vw] h-auto text-sm bg-blue-100 rounded-md p-2 mt-2"
-                          hidden
-                          />
-                          </div>
-
-                             <div className="h-auto w-auto mt-10">
-                           <button onClick={()=>{addProduct()}}className="p-3 text-white font-semibold rounded-md w-24 block bg-blue-500">Add</button>
-                            </div> 
-
-                        </div>
-                    </form>
-                </div>
-                </div>
-            </div>
         </>
     )
 }
