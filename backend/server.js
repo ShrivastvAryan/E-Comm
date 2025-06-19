@@ -203,6 +203,27 @@ app.post('/login', async (req, res) => {
     return res.json({ success: true, token });
 });
 
+//creating end point for new collection
+app.get('/newcollections',async(req,res)=>{
+    let products=await Product.find({});
+    let newCollection=products.slice(1).slice(-8);
+    console.log("New collection fetched");
+    res.send(newCollection);
+})
+
+//creating end point for popular in women
+app.get('/popularwomen',async(req,res)=>{
+    let products=await Product.find({category:"women"})
+    let popularwomen=products.slice(0,4)
+    console.log("popular in women fetched")
+    res.send(popularwomen)
+})
+
+//creating endPoint for adding products in cartData
+app.post('/addtocart',async(req,req)=>{
+    
+})
+
 //API creation 
 
 app.get("/",(req,res)=>{

@@ -51,9 +51,9 @@ const Navbar=()=>{
      <CiShoppingCart />
      </div>
   
-      {localStorage.getItem(`auth-token`)
+    {/*  {localStorage.getItem(`auth-token`)
       ?<button onClick={()=>{localStorage.removeItem(`auth-token`); window.location.replace('/')}} className='p-1 rounded-lg bg-blue-200 ml-2 pl-2 pr-2'>Logout</button>
-      : <button as={Link} href='/register' className='p-1 rounded-lg bg-blue-200 ml-2 pl-2 pr-2'>Login</button>}
+      : <button as={Link} href='/register' className='p-1 rounded-lg bg-blue-200 ml-2 pl-2 pr-2'>Login</button>}*/} 
      
      </section>
 
