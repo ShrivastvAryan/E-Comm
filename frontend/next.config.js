@@ -1,8 +1,7 @@
-// next.config.js
+const nextConfig = {
+  images: {
+    domains: ['localhost'], // 👈 add this line
+  },
+}
 
-module.exports = {
-    images: {
-      domains: ['images.pexels.com'],
-    },
-  };
-  
+module.exports = nextConfig;

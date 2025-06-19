@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import upload from "../../../public/upload.png"
 import Sidebar from "./sidebar";
+import Image from "next/image";
 
 const Hero=()=>{
 
@@ -10,7 +11,7 @@ const Hero=()=>{
     const[productDetails,setProductDetails]=useState({
         name:"",
         image:"",
-        category:"Men",
+        category:"men",
         new_price:"",
         old_price:""
     })
@@ -76,9 +77,9 @@ const Hero=()=>{
                         <div className="h-auto w-auto mt-10">
                             <span className="font-semibold text-xl">Product Category: </span>
                             <select value={productDetails.category} onChange={changeHandler} name="category" className="p-2 font-semibold text-xs ml-2 bg-blue-100 rounded-sm ">
-                                <option>Men</option>
-                                <option>Women</option>
-                                <option>Kid</option>
+                                <option>men</option>
+                                <option>women</option>
+                                <option>kids</option>
                             </select>
 
                             <div className="h-auto w-auto mt-10">
@@ -94,11 +95,13 @@ const Hero=()=>{
                            <div className="h-auto w-auto mt-10">
                            <span className="font-semibold text-xl">File Input: </span>
                            <label htmlFor="file-input">
-                           <img
+                          <div  className="h-36 w-36 mt-2 object-contain cursor-pointer relative">
+                           <Image
                            src={image ? URL.createObjectURL(image) : upload}
-                           className="h-36 w-36 mt-2 object-contain cursor-pointer"
                            alt="Preview"
+                           fill
                            />
+                           </div>
                            </label>
                           <input
                           onChange={imageHandler}

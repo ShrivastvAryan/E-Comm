@@ -123,6 +123,23 @@ app.get("/allproducts",async(req,res)=>{
     res.send(products);
 })
 
+//Creating API for getting women,men, kids products
+
+app.get('/womenproducts',async(req,res)=>{
+    let products=await Product.find({category:"women"});
+    res.send(products);
+})
+
+app.get('/menproducts',async(req,res)=>{
+    let products=await Product.find({category:"men"});
+    res.send(products);
+})
+
+app.get('/kidsproducts',async(req,res)=>{
+    let products=await Product.find({category:"kids"});
+    res.send(products);
+})
+
 //Schema creating for user Model
 
 const Users=mongoose.model('Users',{
@@ -220,8 +237,8 @@ app.get('/popularwomen',async(req,res)=>{
 })
 
 //creating endPoint for adding products in cartData
-app.post('/addtocart',async(req,req)=>{
-    
+app.post('/addtocart',async(res,req)=>{
+
 })
 
 //API creation 

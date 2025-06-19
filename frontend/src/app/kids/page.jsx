@@ -1,15 +1,15 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 
-const Women = () => {
-  const [women, setWomen] = useState([]);
+const Kids= () => {
+  const [kids, setKids] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:5000/womenproducts');
+        const res = await fetch('http://localhost:5000/kidsproducts');
         const data = await res.json();
-        setWomen(data);
+        setKids(data);
       } catch (error) {
         console.error('Fetch error:', error);
       }
@@ -19,10 +19,10 @@ const Women = () => {
 
   return (
     <>
-      <h1 className="text-5xl text-center block pt-10 pb-10">Collections Of Women</h1>
+      <h1 className="text-5xl text-center block pt-10 pb-10">Collections Of Kids</h1>
       <div className="h-auto w-full md:w-[90vw] flex gap-4 md:mx-auto">
         <div className=" w-full md:w-[90vw] grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 md:mx-auto">
-          {women.map((item, index) => (
+          {kids.map((item, index) => (
             <div key={index} className="w-full h-44 sm:h-52 md:h-64 lg:h-72 shadow-lg">
               <div className="w-full h-[70%] flex items-center justify-center">
                 {/* Assuming item.image is a URL */}
@@ -40,4 +40,4 @@ const Women = () => {
   );
 };
 
-export default Women;
+export default Kids;
