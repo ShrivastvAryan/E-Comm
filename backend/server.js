@@ -228,12 +228,26 @@ app.get('/newcollections',async(req,res)=>{
     res.send(newCollection);
 })
 
-//creating end point for popular in women
+//creating end point for popular in women,men and kids
 app.get('/popularwomen',async(req,res)=>{
     let products=await Product.find({category:"women"})
     let popularwomen=products.slice(0,4)
     console.log("popular in women fetched")
     res.send(popularwomen)
+})
+
+app.get('/popularmen',async(req,res)=>{
+    let products=await Product.find({category:"men"})
+    let popularmen=products.slice(0,4)
+    console.log("popular in men fetched")
+    res.send(popularmen)
+})
+
+app.get('/popularkids',async(req,res)=>{
+    let products=await Product.find({category:"kids"})
+    let popularkids=products.slice(0,4)
+    console.log("popular in kids fetched")
+    res.send(popularkids)
 })
 
 //creating endPoint for adding products in cartData

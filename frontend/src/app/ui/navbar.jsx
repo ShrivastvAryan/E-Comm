@@ -39,68 +39,39 @@ const Navbar=()=>{
     return(
     <>
 
-  <div className="w-full bg-white shadow-md">
-      {/* Top Section */}
-      <section className="w-[90vw] mx-auto flex items-center justify-between py-4 flex-wrap sm:flex-nowrap gap-4">
-        
-        {/* Logo */}
-        <div className="w-28 h-10 bg-gray-100 flex items-center justify-center text-sm font-bold">
-          LOGO
-        </div>
-
-        {/* Tabs */}
-        <div className="flex-1 min-w-[200px]">
-          <Tabs index={getExploreIndex()} variant="soft-rounded" colorScheme="blue" size="sm">
-            <TabList className="flex gap-2">
-              <Tab fontWeight="semibold" color="black">
-                <p className="text-sm sm:text-base lg:text-md lg:p-2">Men</p>
-              </Tab>
-              <Tab fontWeight="semibold" color="black">
-                <p className="text-sm sm:text-base lg:text-md lg:p-2">Women</p>
-              </Tab>
-              <Tab fontWeight="semibold" color="black">
-                <p className="text-sm sm:text-base lg:text-md lg:p-2">Kids</p>
-              </Tab>
-            </TabList>
-          </Tabs>
-        </div>
-
-        {/* Cart Icon */}
-        <div className="w-10 h-10 rounded-full flex justify-center items-center text-3xl text-gray-700 hover:bg-gray-200 cursor-pointer">
-          <CiShoppingCart />
-        </div>
-
-        {/* Auth Button (Uncomment if needed) */}
-        {/* 
-        {localStorage.getItem(`auth-token`) ? (
-          <button
-            onClick={() => {
-              localStorage.removeItem(`auth-token`);
-              window.location.replace('/');
-            }}
-            className="p-2 rounded-lg bg-blue-200 ml-2 text-sm"
-          >
-            Logout
-          </button>
-        ) : (
-          <button
-            as={Link}
-            href="/register"
-            className="p-2 rounded-lg bg-blue-200 ml-2 text-sm"
-          >
-            Login
-          </button>
-        )} 
-        */}
-      </section>
-
-      {/* Optional: Bottom Section (currently empty) */}
-      <section className="w-[90vw] h-auto flex justify-between pt-3 mx-auto">
-        {/* Add content if needed */}
-      </section>
-    </div>
+<div className="w-full bg-white shadow-md">
+  {/* Top Navbar */}
+  <section className="w-[90vw] mx-auto flex items-center justify-between py-4">
     
- <Divider orientation='horizontal' className='mt-4' />
+    {/* Logo */}
+    <div className="w-28 h-10 bg-gray-100 flex items-center justify-center text-sm font-bold">
+      <Link href='/'>
+      LOGO
+      </Link>
+    </div>
+
+    {/* Menu Tabs */}
+    <div className="flex gap-6">
+      {["Men", "Women", "Kids"].map((item) => (
+        <div
+          key={item}
+          className="relative font-semibold text-black cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full"
+        >
+          <p className="text-sm sm:text-base lg:text-md px-2">{item}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Cart Icon */}
+    <div className="w-10 h-10 rounded-full flex justify-center items-center text-2xl text-gray-700 hover:bg-gray-200 cursor-pointer">
+      <Link href='/cart'><CiShoppingCart /></Link>
+    </div>
+  </section>
+
+  {/* Divider Line */}
+  <Divider orientation="horizontal" className="mt-1" />
+</div>
+
     
     </>
     )
