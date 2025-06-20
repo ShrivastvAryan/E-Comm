@@ -62,6 +62,9 @@ const AllProduct = () => {
                 <p className="text-base md:text-xl">
                   Category: {product.category}
                 </p>
+                <p className="text-base md:text-xl">
+                  Cloth Type: {product.cloth_type}
+                </p>
                 <button
                   onClick={() => {
                     RemoveProduct(product.id);

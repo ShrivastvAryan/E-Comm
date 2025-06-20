@@ -37,7 +37,7 @@ const NewCollection=()=>{
         <>
         <div className="w-[90vw] h-auto mx-auto mt-10 mb-10 ">
             
-            <h1 className="text-4xl block text-center ">New Collections</h1>
+            <h1 className=" text-3xl sm:text-4xl block text-center ">New Collections</h1>
             <div className="grid grid-cols-2 lg:grid-cols-4 w-[90vw] gap-4 mt-8">
             {newcollection.map((items,index)=>(
                 <div key={index} className="w-full h-44 sm:h-52 md:h-64 lg:h-72 shadow-lg">
@@ -56,7 +56,7 @@ const NewCollection=()=>{
 
         <div className="w-[90vw] h-auto  mx-auto mt-10 mb-10 ">
             
-            <h1 className="text-4xl block text-center ">Popular Men Collection</h1>
+            <h1 className="text-3xl sm:text-4xl  block text-center ">Popular Men Collection</h1>
              <div className="grid grid-cols-2 lg:grid-cols-4 w-[90vw] gap-4 mt-8">
             {popularmen.map((items,index)=>(
                 <div key={index} className="w-full h-44 sm:h-52 md:h-64 lg:h-72 shadow-lg ">
@@ -75,7 +75,7 @@ const NewCollection=()=>{
 
         <div className="w-[90vw] h-auto  mx-auto mt-10 mb-10 ">
             
-            <h1 className="text-4xl block text-center ">Popular Women Collection</h1>
+            <h1 className="text-3xl sm:text-4xl  block text-center ">Popular Women Collection</h1>
              <div className="grid grid-cols-2 lg:grid-cols-4 w-[90vw] gap-4 mt-8">
             {popularwomen.map((items,index)=>(
                 <div key={index} className="w-full h-44 sm:h-52 md:h-64 lg:h-72 shadow-lg ">
@@ -94,7 +94,7 @@ const NewCollection=()=>{
 
         <div className="w-[90vw] h-auto  mx-auto mt-10 mb-10 ">
             
-            <h1 className="text-4xl block text-center ">Popular Kids Collection</h1>
+            <h1 className="text-3xl sm:text-4xl  block text-center ">Popular Kids Collection</h1>
             <div className="grid grid-cols-2 lg:grid-cols-4 w-[90vw] gap-4 mt-4">
             {popularkids.map((items,index)=>(
                 <div key={index} className="w-full h-44 sm:h-52 md:h-64 lg:h-72  shadow-lg">

@@ -9,32 +9,14 @@ const Navbar=()=>{
 
     const explorename=usePathname();
 
-    const pathname = usePathname(); // Get current path
- // const { isOpen, onOpen, onClose } = useDisclosure();
+    const pathname = usePathname(); 
 
-   // Ensure pathname is defined before using it
-   if (!pathname) return null;
+    const categories = [
+  { label: "Men", href: "/men" },
+  { label: "Women", href: "/women" },
+  { label: "Kids", href: "/kids" },
+];
 
-   // Define active tab based on current route
-   const getTabIndex = () => {
-     switch (pathname) {
-       case "/shopping":
-         return 1;
-       default:
-         return 0;
-     }
-   };
-
-   if(!explorename) return null;
-
-   const getExploreIndex=()=>{
-    switch(explorename){
-        case "/women":
-         return 1;
-        default:
-            return 0;
-    }
-   }
 
     return(
     <>
@@ -52,12 +34,12 @@ const Navbar=()=>{
 
     {/* Menu Tabs */}
     <div className="flex gap-6">
-      {["Men", "Women", "Kids"].map((item) => (
+      {categories.map(({label,href}) => (
         <div
-          key={item}
+          key={label}
           className="relative font-semibold text-black cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full"
         >
-          <p className="text-sm sm:text-base lg:text-md px-2">{item}</p>
+         <Link href={href}><p className="text-sm sm:text-base lg:text-md px-2">{label}</p></Link> 
         </div>
       ))}
     </div>

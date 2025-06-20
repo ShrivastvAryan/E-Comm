@@ -12,8 +12,10 @@ const Hero=()=>{
         name:"",
         image:"",
         category:"men",
+        cloth_type:"cotton",
         new_price:"",
-        old_price:""
+        old_price:"",
+        description:""
     })
 
     const imageHandler=(e)=>{
@@ -100,6 +102,23 @@ const Hero=()=>{
           </select>
         </div>
 
+         {/* Category */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">Cloth Fabric:</span>
+          <select
+            value={productDetails.cloth_type}
+            onChange={changeHandler}
+            name="cloth_type"
+            className="p-2 font-semibold text-sm bg-blue-100 rounded-sm"
+          >
+            <option>cotton</option>
+            <option>linen</option>
+            <option>wool</option>
+            <option>cotton fabric</option>
+            <option>georgette</option>
+          </select>
+        </div>
+
         {/* Old Price */}
         <div className="mb-6">
           <span className="font-semibold text-xl block mb-2">Price:</span>
@@ -125,6 +144,22 @@ const Hero=()=>{
             className="w-full md:w-[60%] text-sm bg-blue-100 rounded-md p-2"
           />
         </div>
+
+        {/* Description */}
+        <div className="mb-6">
+          <span className="font-semibold text-xl block mb-2">Description:</span>
+          <textarea
+            value={productDetails.description}
+            onChange={changeHandler}
+            type="text"
+            name="description"
+            placeholder="Type here"
+            rows={6}
+            cols={40}
+            className="w-full md:w-[60%] text-sm bg-blue-100 rounded-md p-2"
+          />
+        </div>
+
 
         {/* Image Input */}
         <div className="mb-6">

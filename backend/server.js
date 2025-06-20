@@ -55,6 +55,14 @@ const Product=mongoose.model("Product",{
         type:String,
         required:true,
     },
+    cloth_type:{
+        type:String,
+        required:true,
+    },
+    description:{
+        type:String,
+        required:true,
+    },
     new_price:{
         type:Number,
         required:true,
@@ -89,8 +97,11 @@ app.post ('/addproduct',async(req,res)=>{
         name:req.body.name,
         image:req.body.image,
         category:req.body.category,
+        cloth_type:req.body.cloth_type,
+        description:req.body.description,
         new_price:req.body.new_price,
         old_price:req.body.old_price,
+
     });
 
     console.log(product);
