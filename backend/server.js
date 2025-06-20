@@ -27,7 +27,7 @@ const storage= multer.diskStorage({
 const upload=multer({storage:storage})
 
 //Creating upload endpoint for images
-app.use('/images',express.static('upload/images'));
+app.use('/images',express.static('upload'));
 
 app.post("/upload",upload.single('product'),(req,res)=>{
    res.json({
@@ -136,10 +136,30 @@ app.get("/allproducts",async(req,res)=>{
 
 //Creating API for getting women,men, kids products
 
+app.get('/menproduct',async(req,res)=>{
+    try {
+        let products=await Product.find({category:"men"});
+        console.log("men product fetched")
+        res.send(products)
+    } catch (error) {
+        res.status(500).send({error:"Internal server error"})
+    }
+})
+
+app.get('/:category/products', async (req, res) => {
+  const { category } = req.params;
+  try {
+    const products = await Product.find({ category });
+    res.send(products);
+  } catch (err) {
+    res.status(500).send({ error: 'Internal server error' });
+  }
+});
+
 app.get('/:category/products/:id', async (req, res) => {
   const { category, id } = req.params;
   try {
-    const product = await Product.findOne({ id: id, category });
+   const product = await Product.findOne({ id: id, category: category });
     if (!product) return res.status(404).send({ error: 'Product not found' });
     res.send(product);
   } catch (err) {

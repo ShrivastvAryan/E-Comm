@@ -33,7 +33,7 @@ const ProductPage = () => {
     <div className="w-screen h-auto mx-auto mt-2 px-2 sm:px-4 md:px-8 lg:flex lg:justify-center">
 
       <div className="w-full lg:w-[50%]">
-        <div className="w-full h-[40vh] sm:h-[50vh] lg:h-[80vh] bg-slate-400 rounded-lg lg:mt-3 relative">
+        <div className="w-full h-[40vh] sm:h-[50vh] md:h-[80vh] lg:h-[80vh] rounded-lg  lg:mt-3 relative">
                 <Image src={product.image} alt={product.name} fill className="object-contain" />
         </div>
       </div>
