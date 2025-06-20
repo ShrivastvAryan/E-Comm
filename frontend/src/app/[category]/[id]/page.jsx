@@ -1,26 +1,48 @@
 'use client';
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
-const Product = () => {
+const ProductPage = () => {
+  const { category, id } = useParams();
+  const [product, setProduct] = useState(null);
 
-   const [size, setSize] = useState("S");
 
-  const sizes = ["S", "M", "L", "XL"];
+     const [size, setSize] = useState("S");
+  
+    const sizes = ["S", "M", "L", "XL"];
+  
 
+  useEffect(() => {
+  const fetchSingleProduct = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/${category}/products/${id}`);
+      const data = await res.json();
+      setProduct(data); // Directly set the product
+    } catch (err) {
+      console.error('Error fetching single product:', err);
+    }
+  };
+
+  if (category && id) fetchSingleProduct();
+}, [category, id]);
+
+  if (!product) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <div className="w-screen h-auto mx-auto mt-2 px-2 sm:px-4 md:px-8 lg:flex lg:justify-center">
 
       <div className="w-full lg:w-[50%]">
-        <div className="w-full h-[40vh] sm:h-[50vh] lg:h-[80vh] bg-slate-400 rounded-lg lg:mt-3"></div>
+        <div className="w-full h-[40vh] sm:h-[50vh] lg:h-[80vh] bg-slate-400 rounded-lg lg:mt-3 relative">
+                <Image src={product.image} alt={product.name} fill className="object-contain" />
+        </div>
       </div>
 
       <div className="w-full lg:w-[50%] lg:ml-6 mt-4 lg:mt-3 rounded-sm">
         <div className="p-2 pt-4">
-          <p className="text-base sm:text-lg font-medium">Roadster Tshirt Relaxed Fit</p>
+          <p className="text-base sm:text-lg font-medium">{product.name}</p>
           <p className="pt-2 text-sm sm:text-base">
-            MRP: <span className="font-semibold text-base sm:text-lg">₹800</span>
+            MRP: <span className="font-semibold text-base sm:text-lg">₹{product.new_price}</span>
           </p>
 
           <div className="pt-4">
@@ -42,14 +64,9 @@ const Product = () => {
 
           <div className="w-full h-auto rounded-2xl border border-gray-300 mt-8 p-3 bg-white">
             <h1 className="font-semibold text-sm sm:text-base">Description</h1>
-            <p className="text-sm mt-1">Fabric: Cotton</p>
+            <p className="text-sm mt-1">Fabric: {product.cloth_type}</p>
             <p className="text-sm mt-1 text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nemo facere unde
-              aspernatur nesciunt sunt ipsa. Velit quis veniam unde deserunt delectus corrupti
-              inventore beatae exercitationem rem.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nemo facere unde
-              aspernatur nesciunt sunt ipsa. Velit quis veniam unde deserunt delectus corrupti
-              inventore beatae exercitationem rem.
+             {product.description}
             </p>
           </div>
 
@@ -59,7 +76,10 @@ const Product = () => {
         </div>
       </div>
     </div>
+
+    
   );
 };
 
-export default Product;
+export default ProductPage;
+

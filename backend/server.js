@@ -136,20 +136,16 @@ app.get("/allproducts",async(req,res)=>{
 
 //Creating API for getting women,men, kids products
 
-app.get('/womenproducts',async(req,res)=>{
-    let products=await Product.find({category:"women"});
-    res.send(products);
-})
-
-app.get('/menproducts',async(req,res)=>{
-    let products=await Product.find({category:"men"});
-    res.send(products);
-})
-
-app.get('/kidsproducts',async(req,res)=>{
-    let products=await Product.find({category:"kids"});
-    res.send(products);
-})
+app.get('/:category/products/:id', async (req, res) => {
+  const { category, id } = req.params;
+  try {
+    const product = await Product.findOne({ id: id, category });
+    if (!product) return res.status(404).send({ error: 'Product not found' });
+    res.send(product);
+  } catch (err) {
+    res.status(500).send({ error: 'Internal server error' });
+  }
+});
 
 //Schema creating for user Model
 

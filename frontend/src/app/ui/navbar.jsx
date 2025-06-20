@@ -12,9 +12,9 @@ const Navbar=()=>{
     const pathname = usePathname(); 
 
     const categories = [
-  { label: "Men", href: "/men" },
-  { label: "Women", href: "/women" },
-  { label: "Kids", href: "/kids" },
+  { label: "Men", href: "/category/men" },
+  { label: "Women", href: "/category/women" },
+  { label: "Kids", href: "/category/kids" },
 ];
 
 
