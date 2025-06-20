@@ -6,8 +6,24 @@ import Image from 'next/image';
 const ProductPage = () => {
   const { category, id } = useParams();
   const [product, setProduct] = useState(null);
+ 
+   const ChangeCart = async (id) => {
+    try {
+    const response = await fetch('http://localhost:5000/addcart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id:id}),
+    });
 
-
+    const data = await response.json();
+    alert("Added to Cart")
+    console.log("Cart response:", data);
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+  }
+};
      const [size, setSize] = useState("S");
   
     const sizes = ["S", "M", "L", "XL"];
@@ -70,7 +86,7 @@ const ProductPage = () => {
             </p>
           </div>
 
-          <button className="p-3 w-full bg-blue-500 text-white mt-10 rounded-2xl hover:bg-blue-600 transition duration-200">
+          <button  onClick={() => ChangeCart(product.id)} className="p-3 w-full bg-blue-500 text-white mt-10 rounded-2xl hover:bg-blue-600 transition duration-200">
             Add to Cart
           </button>
         </div>

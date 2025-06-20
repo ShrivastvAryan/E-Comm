@@ -26,9 +26,9 @@ const Navbar=()=>{
   <section className="w-[90vw] mx-auto flex items-center justify-between py-4">
     
     {/* Logo */}
-    <div className="w-28 h-10 bg-gray-100 flex items-center justify-center text-sm font-bold">
+    <div className="w-28 h-10 bg-gray-100 flex items-center justify-center text-sm font-bold relative">
       <Link href='/'>
-      LOGO
+        Logo
       </Link>
     </div>
 

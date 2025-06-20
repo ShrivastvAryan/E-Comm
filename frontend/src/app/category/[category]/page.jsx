@@ -19,7 +19,10 @@ const CategoryPage = () => {
       }
     };
 
-    if (category) fetchCategoryProducts();
+    if (!category) {
+      return <p>Loading......</p>
+    }
+      fetchCategoryProducts();
   }, [category]);
 
   return (

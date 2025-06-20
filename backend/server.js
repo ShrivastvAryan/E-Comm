@@ -125,6 +125,29 @@ app.post("/removeproduct",async(req,res)=>{
     })
 })
 
+app.post("/addcart", async (req, res) => {
+
+  try {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ error: "Product ID is required" });
+    }
+
+    const product = await Product.findOne({ id });
+
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res.status(200).json(product);
+  } catch (error) {
+    console.error("Error in /addcart:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 //Creating API for getting all products
 
 app.get("/allproducts",async(req,res)=>{
@@ -276,12 +299,6 @@ app.get('/popularkids',async(req,res)=>{
     console.log("popular in kids fetched")
     res.send(popularkids)
 })
-
-//creating endPoint for adding products in cartData
-app.post('/addtocart',async(res,req)=>{
-
-})
-
 //API creation 
 
 app.get("/",(req,res)=>{

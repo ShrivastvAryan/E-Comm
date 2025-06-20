@@ -31,6 +31,9 @@ const NewCollection=()=>{
             }
         }
 
+        if(!fetchAll){
+            return <p>Loading...</p>
+        }
           fetchAll();
     },[])
 
