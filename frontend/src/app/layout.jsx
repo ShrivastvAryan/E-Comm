@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Providers } from './providers'
 import Navbar from "./ui/navbar";
+import Footer from "./ui/footer";
 
 export const metadata = {
   title: "E-Comm",
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
          <Providers>
          <Navbar/>
         {children}
+        <Footer/>
         </Providers>
       </body>
     </html>

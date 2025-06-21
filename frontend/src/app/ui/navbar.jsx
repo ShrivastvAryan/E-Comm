@@ -1,15 +1,28 @@
 'use client'
 import Link from 'next/link';
 import React from 'react';
-import { Tab,TabList,Tabs,Avatar,Divider,Menu,MenuButton,MenuList,Button,MenuGroup,MenuItem} from "@chakra-ui/react";
+import { Divider} from "@chakra-ui/react";
 import{CiShoppingCart} from "react-icons/ci";
-import { usePathname } from 'next/navigation';
+import { RadioGroup,DrawerHeader,DrawerBody,DrawerContent,Drawer,DrawerOverlay } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons'
+import { useState,useEffect } from 'react';
 
 const Navbar=()=>{
+  
+   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [placement, setPlacement] = React.useState('top')
 
-    const explorename=usePathname();
+  const [token, setToken] = useState(null);
 
-    const pathname = usePathname(); 
+  useEffect(() => {
+    setToken(localStorage.getItem('auth-token'));
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth-token');
+    setToken(null); // trigger re-render
+  };
 
     const categories = [
   { label: "Men", href: "/category/men" },
@@ -18,7 +31,7 @@ const Navbar=()=>{
 ];
 
 
-    return(
+return(
     <>
 
 <div className="w-full bg-white shadow-md">
@@ -33,7 +46,7 @@ const Navbar=()=>{
     </div>
 
     {/* Menu Tabs */}
-    <div className="flex gap-6">
+    <div className=" hidden md:flex gap-6 ">
       {categories.map(({label,href}) => (
         <div
           key={label}
@@ -44,10 +57,48 @@ const Navbar=()=>{
       ))}
     </div>
 
+    <div className='flex gap-4'>
+    <div className='md:hidden'>
+      <RadioGroup defaultValue={placement} onChange={setPlacement} cl>
+      </RadioGroup>
+      <button className='pt-2' onClick={onOpen}>
+        <HamburgerIcon/>
+      </button>
+      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth='1px'>Categories</DrawerHeader>
+          <DrawerBody>
+            <p>Men</p>
+            <p>Women</p>
+            <p>Kids</p>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+      </div>
+
+   {token ? (
+        <button
+          onClick={handleLogout}
+          className="border-red-500 border-[2px] p-1 px-3 text-red-500 rounded-xl hover:text-red-600"
+        >
+          Logout
+        </button>
+      ) : (
+        <Link
+          href="/register"
+          className="border-blue-500 border-[2px] p-1 px-3 text-blue-500 rounded-xl hover:text-blue-600"
+        >
+          Login
+        </Link>
+      )}
+
     {/* Cart Icon */}
     <div className="w-10 h-10 rounded-full flex justify-center items-center text-2xl text-gray-700 hover:bg-gray-200 cursor-pointer">
       <Link href='/cart'><CiShoppingCart /></Link>
     </div>
+  </div>
+
   </section>
 
   {/* Divider Line */}

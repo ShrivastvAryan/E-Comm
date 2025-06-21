@@ -3,10 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const CategoryPage = () => {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
+
+   useEffect(() => {
+    AOS.init({ duration: 800 });
+  }, []);
 
   useEffect(() => {
     const fetchCategoryProducts = async () => {
@@ -27,10 +33,11 @@ const CategoryPage = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-4xl font-bold text-center capitalize my-6 pb-2">
+      <h1 className="text-3xl sm:text-4xl bg-blue-500 p-1 px-3 text-white 
+               rounded-xl my-6 w-fit mx-auto text-center">
         Collections of {category}
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-aos="fade-up">
         {products.map((item) => (
           <Link href={`/${category}/${item.id}`} key={item.id}>
             <div className="w-full h-80 sm:h-52 md:h-64 lg:h-72 bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
