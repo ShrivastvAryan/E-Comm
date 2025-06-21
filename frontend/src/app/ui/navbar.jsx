@@ -7,6 +7,7 @@ import { RadioGroup,DrawerHeader,DrawerBody,DrawerContent,Drawer,DrawerOverlay }
 import { useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { useState,useEffect } from 'react';
+import Image from 'next/image';
 
 const Navbar=()=>{
   
@@ -39,9 +40,14 @@ return(
   <section className="w-[90vw] mx-auto flex items-center justify-between py-4">
     
     {/* Logo */}
-    <div className="w-28 h-10 bg-gray-100 flex items-center justify-center text-sm font-bold relative">
+    <div className="w-16 h-10  flex items-center justify-center text-sm font-bold relative">
       <Link href='/'>
-        Logo
+         <Image
+      src="/logo.png"
+      alt="Logo"
+      fill
+      className="cursor-pointer object-cover flex justify-start"
+    />
       </Link>
     </div>
 
@@ -69,9 +75,15 @@ return(
         <DrawerContent>
           <DrawerHeader borderBottomWidth='1px'>Categories</DrawerHeader>
           <DrawerBody>
+            <Link href='/category/men'>
             <p>Men</p>
+            </Link>
+            <Link href='/category/women'>
             <p>Women</p>
+            </Link>
+            <Link href='/category/kids'>
             <p>Kids</p>
+            </Link>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
