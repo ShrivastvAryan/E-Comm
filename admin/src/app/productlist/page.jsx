@@ -2,9 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "../UI/sidebar";
+import { useToast } from '@chakra-ui/react'
 
 const AllProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
+  const toast = useToast()
+
 
   const fetchInfo = async () => {
     await fetch('http://localhost:5000/allproducts')
@@ -68,6 +71,15 @@ const AllProduct = () => {
                 <button
                   onClick={() => {
                     RemoveProduct(product.id);
+                    toast({
+                      colorScheme:'red',
+                      position: 'top',
+          title: 'Product Deleted ',
+          description: "Product Successfully Deleted",
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        })
                   }}
                   className="bg-red-700 px-3 py-1 rounded-md text-white mt-3 cursor-pointer"
                 >

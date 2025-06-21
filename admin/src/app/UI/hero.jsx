@@ -4,8 +4,11 @@ import { useState } from "react";
 import upload from "../../../public/upload.png"
 import Sidebar from "./sidebar";
 import Image from "next/image";
+import { useToast } from '@chakra-ui/react'
 
 const Hero=()=>{
+
+  const toast = useToast()
 
     const [image,setImage]=useState(false);
     const[productDetails,setProductDetails]=useState({
@@ -55,7 +58,23 @@ const Hero=()=>{
                 body:JSON.stringify(product),
                 
             }).then ((resp)=>resp.json()).then((data)=>{
-                data.success?alert("Product added"):alert("Failed")
+                   if (data.success) {
+                   toast({
+                    position: 'top',
+                    title: 'Product added successfully.',
+                   status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                  });
+                   } else {
+                toast({
+                  position: 'top',
+                title: 'Failed to add product.',
+                 status: 'error',
+                  duration: 5000,
+                  isClosable: true,
+                 });
+        }
             })
         }
     }
@@ -184,12 +203,12 @@ const Hero=()=>{
 
         {/* Add Button */}
         <div className="mt-6">
-          <button
-            onClick={() => addProduct()}
-            className="p-3 text-white font-semibold rounded-md w-full sm:w-24 bg-blue-500"
-          >
-            Add
-          </button>
+         <button
+          onClick={addProduct}
+  className="p-3 text-white font-semibold rounded-md w-full sm:w-24 bg-blue-500"
+>
+  Add
+</button>
         </div>
       </form>
     </div>
