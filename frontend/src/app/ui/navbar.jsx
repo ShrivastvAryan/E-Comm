@@ -60,7 +60,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
           
               <Link href="/">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300 cursor-pointer">
+                <h1 className="text-sm font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300 cursor-pointer">
                   E-Shop
                 </h1>
               </Link>
@@ -105,21 +105,16 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-            
-              <button className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-300">
-                <CiSearch className="text-xl" />
-              </button>
-
          
-              <Link href="/wishlist">
+            {/* <Link href="/wishlist">
                 <div className="relative w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-red-500 transition-all duration-300 group">
                   <CiHeart className="text-xl group-hover:scale-110 transition-transform duration-300" />
                   <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center animate-pulse">
                     0
                   </span>
                 </div>
-              </Link>
-
+              </Link> */}  
+ 
               <Link href="/cart">
                 <div className="relative w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-300 group">
                   <CiShoppingCart className="text-xl group-hover:scale-110 transition-transform duration-300" />
@@ -162,19 +157,6 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-
-          <div className="lg:hidden pb-4">
-            <form onSubmit={handleSearch} className="relative">
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:border-blue-500 focus:outline-none"
-              />
-              <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </form>
-          </div>
         </section>
 
         <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
@@ -200,10 +182,10 @@ const Navbar = () => {
                 ))}
                 
                 <div className="pt-4 space-y-2">
-                  <Link href="/profile" onClick={onClose}>
+                 {/*  <Link href="/register" onClick={onClose}>
                     <div className="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300">
                       <CiUser className="text-2xl text-gray-600" />
-                      <span className="font-medium text-gray-700">Profile</span>
+                      <span className="font-medium text-gray-700">SignUp</span>
                     </div>
                   </Link>
                   
@@ -212,20 +194,8 @@ const Navbar = () => {
                       <CiHeart className="text-2xl text-gray-600" />
                       <span className="font-medium text-gray-700">Wishlist</span>
                     </div>
-                  </Link>
+                  </Link> */}
 
-                  {token && (
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        onClose();
-                      }}
-                      className="w-full flex items-center space-x-3 p-4 rounded-lg hover:bg-red-50 transition-all duration-300 text-red-500"
-                    >
-                      <span className="text-2xl">🚪</span>
-                      <span className="font-medium">Logout</span>
-                    </button>
-                  )}
                 </div>
               </div>
             </DrawerBody>
