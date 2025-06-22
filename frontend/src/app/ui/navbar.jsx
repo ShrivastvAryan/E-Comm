@@ -1,126 +1,239 @@
 'use client'
 import Link from 'next/link';
 import React from 'react';
-import { Divider} from "@chakra-ui/react";
-import{CiShoppingCart} from "react-icons/ci";
-import { RadioGroup,DrawerHeader,DrawerBody,DrawerContent,Drawer,DrawerOverlay } from '@chakra-ui/react';
+import{CiShoppingCart, CiSearch, CiUser, CiHeart} from "react-icons/ci";
+import { DrawerHeader,DrawerBody,DrawerContent,Drawer,DrawerOverlay } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { useState,useEffect } from 'react';
-import Image from 'next/image';
 
-const Navbar=()=>{
-  
-   const { isOpen, onOpen, onClose } = useDisclosure()
+const Navbar = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [placement, setPlacement] = React.useState('top')
-
   const [token, setToken] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setToken(localStorage.getItem('auth-token'));
   }, []);
 
+  // Add scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('auth-token');
-    setToken(null); // trigger re-render
+    setToken(null);
   };
 
-    const categories = [
-  { label: "Men", href: "/category/men" },
-  { label: "Women", href: "/category/women" },
-  { label: "Kids", href: "/category/kids" },
-];
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Add your search logic here
+    console.log('Searching for:', searchQuery);
+  };
 
+  const categories = [
+    { label: "Men", href: "/category/men", icon: "👔" },
+    { label: "Women", href: "/category/women", icon: "👗" },
+    { label: "Kids", href: "/category/kids", icon: "🧸" },
+  ];
 
-return(
+  return (
     <>
-
-<div className="w-full bg-white shadow-md">
-  {/* Top Navbar */}
-  <section className="w-[90vw] mx-auto flex items-center justify-between py-4">
-    
-    {/* Logo */}
-    <div className="w-16 h-10  flex items-center justify-center text-sm font-bold relative">
-      <Link href='/'>
-         <Image
-      src="/logo.png"
-      alt="Logo"
-      fill
-      className="cursor-pointer object-cover flex justify-start"
-    />
-      </Link>
-    </div>
-
-    {/* Menu Tabs */}
-    <div className=" hidden md:flex gap-6 ">
-      {categories.map(({label,href}) => (
-        <div
-          key={label}
-          className="relative font-semibold text-black cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full"
-        >
-         <Link href={href}><p className="text-sm sm:text-base lg:text-md px-2">{label}</p></Link> 
+      <div className={`w-full bg-white/95 backdrop-blur-lg border-b border-gray-100 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg' : 'shadow-md'}`}>
+ 
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 text-sm">
+          <p className="animate-pulse">🎉 Free shipping on orders over ₹999! Limited time offer</p>
         </div>
-      ))}
-    </div>
 
-    <div className='flex gap-4'>
-    <div className='md:hidden'>
-      <RadioGroup defaultValue={placement} onChange={setPlacement} cl>
-      </RadioGroup>
-      <button className='pt-2' onClick={onOpen}>
-        <HamburgerIcon/>
-      </button>
-      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth='1px'>Categories</DrawerHeader>
-          <DrawerBody>
-            <Link href='/category/men'>
-            <p>Men</p>
-            </Link>
-            <Link href='/category/women'>
-            <p>Women</p>
-            </Link>
-            <Link href='/category/kids'>
-            <p>Kids</p>
-            </Link>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+  
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-4">
+            
+        
+            <div className="flex items-center space-x-4">
+          
+              <Link href="/">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300 cursor-pointer">
+                  E-Shop
+                </h1>
+              </Link>
+            </div>
+
+          {/*  <div className="hidden lg:flex flex-1 max-w-2xl mx-8">
+              <form onSubmit={handleSearch} className="w-full relative group">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search for products, brands and more..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-full focus:border-blue-500 focus:outline-none transition-all duration-300 group-hover:border-gray-300"
+                  />
+                  <CiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl group-hover:text-blue-500 transition-colors duration-300" />
+                </div>
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:scale-105"
+                >
+                  Search
+                </button>
+              </form>
+            </div> */} 
+
+          
+            <div className="hidden md:flex items-center space-x-8">
+              {categories.map(({ label, href, icon }) => (
+                <Link key={label} href={href}>
+                  <div className="group relative cursor-pointer">
+                    <div className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-50 transition-all duration-300">
+                      <span className="text-lg">{icon}</span>
+                      <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
+                        {label}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex items-center space-x-4">
+            
+              <button className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-300">
+                <CiSearch className="text-xl" />
+              </button>
+
+         
+              <Link href="/wishlist">
+                <div className="relative w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-red-500 transition-all duration-300 group">
+                  <CiHeart className="text-xl group-hover:scale-110 transition-transform duration-300" />
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center animate-pulse">
+                    0
+                  </span>
+                </div>
+              </Link>
+
+              <Link href="/cart">
+                <div className="relative w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-300 group">
+                  <CiShoppingCart className="text-xl group-hover:scale-110 transition-transform duration-300" />
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 text-white text-xs rounded-full flex items-center justify-center animate-pulse">
+                    2
+                  </span>
+                </div>
+              </Link>
+
+           
+              {token ? (
+                <div className="flex items-center space-x-3">
+                  <Link href="/profile">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-green-600 transition-all duration-300">
+                      <CiUser className="text-xl" />
+                    </div>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="hidden sm:block px-4 py-2 border-2 border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition-all duration-300 font-medium"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link href="/register">
+                  <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 font-medium hover:scale-105 shadow-lg">
+                    SingUp
+                  </button>
+                </Link>
+              )}
+
+              <div className="md:hidden">
+                <button 
+                  onClick={onOpen}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-all duration-300"
+                >
+                  <HamburgerIcon />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:hidden pb-4">
+            <form onSubmit={handleSearch} className="relative">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:border-blue-500 focus:outline-none"
+              />
+              <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            </form>
+          </div>
+        </section>
+
+        <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerHeader className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+              <div className="flex items-center justify-between">
+                <span className="text-xl font-bold">Menu</span>
+                <button onClick={onClose} className="text-white hover:text-gray-200">
+                  ✕
+                </button>
+              </div>
+            </DrawerHeader>
+            <DrawerBody className="p-0">
+              <div className="space-y-2 p-4">
+                {categories.map(({ label, href, icon }) => (
+                  <Link key={label} href={href} onClick={onClose}>
+                    <div className="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300 border-b border-gray-100">
+                      <span className="text-2xl">{icon}</span>
+                      <span className="font-medium text-gray-700">{label}</span>
+                    </div>
+                  </Link>
+                ))}
+                
+                <div className="pt-4 space-y-2">
+                  <Link href="/profile" onClick={onClose}>
+                    <div className="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300">
+                      <CiUser className="text-2xl text-gray-600" />
+                      <span className="font-medium text-gray-700">Profile</span>
+                    </div>
+                  </Link>
+                  
+                  <Link href="/wishlist" onClick={onClose}>
+                    <div className="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300">
+                      <CiHeart className="text-2xl text-gray-600" />
+                      <span className="font-medium text-gray-700">Wishlist</span>
+                    </div>
+                  </Link>
+
+                  {token && (
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        onClose();
+                      }}
+                      className="w-full flex items-center space-x-3 p-4 rounded-lg hover:bg-red-50 transition-all duration-300 text-red-500"
+                    >
+                      <span className="text-2xl">🚪</span>
+                      <span className="font-medium">Logout</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </div>
-
-   {token ? (
-        <button
-          onClick={handleLogout}
-          className="border-red-500 border-[2px] p-1 px-3 text-red-500 rounded-xl hover:text-red-600"
-        >
-          Logout
-        </button>
-      ) : (
-        <Link
-          href="/register"
-          className="border-blue-500 border-[2px] p-1 px-3 text-blue-500 rounded-xl hover:text-blue-600"
-        >
-          Login
-        </Link>
-      )}
-
-    {/* Cart Icon */}
-    <div className="w-10 h-10 rounded-full flex justify-center items-center text-2xl text-gray-700 hover:bg-gray-200 cursor-pointer">
-      <Link href='/cart'><CiShoppingCart /></Link>
-    </div>
-  </div>
-
-  </section>
-
-  {/* Divider Line */}
-  <Divider orientation="horizontal" className="mt-1" />
-</div>
-
-    
     </>
-    )
+  )
 }
-
 
 export default Navbar

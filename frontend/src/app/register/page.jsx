@@ -1,11 +1,11 @@
 'use client'
-import { Button } from '@chakra-ui/react';
-import Link from 'next/link';
 import React from 'react';
 import { useState } from "react"
-import{useNavigate} from "react-router-dom"
+import { useToast } from '@chakra-ui/react'
 
 const Register=()=>{
+
+  const toast = useToast()
 
     const[state,setState]=useState("Signup");
     const[formData,setFormData]=useState({
@@ -32,10 +32,26 @@ const Register=()=>{
 
       if(responseData.success){
         localStorage.setItem('auth-token',responseData.token);
+       
+      toast({
+        title: 'Login Successful',
+        status: 'success',
+         position: 'top',
+        duration: 9000,
+        isClosable: true,
+      });
+
         window.location.replace("/");
       }
       else{
-        alert(responseData.errors) //Need to integrate the error
+        toast({
+        title: 'Invalid Credential',
+        status: 'error',
+        colorScheme:'red',
+        position: 'top',
+        duration: 9000,
+        isClosable: true,
+      });
       }
     }
     
@@ -53,10 +69,28 @@ const Register=()=>{
 
       if(responseData.success){
         localStorage.setItem('auth-token',responseData.token);
+
+        toast({
+          title: 'Account created.',
+          description: "We've created your account for you.",
+          status: 'success',
+          position:'top',
+          duration: 9000,
+          isClosable: true,
+        })
+
         window.location.replace("/");
       }
       else{
-        alert(responseData.errors||"Signup Failed") //Need to integrate the error
+         
+         toast({
+          title: 'SignUp Failed',
+          colorScheme:'red',
+          status: 'error',
+          position:'top',
+          duration: 9000,
+          isClosable: true,
+        })
       }
     }
 
@@ -66,14 +100,14 @@ const Register=()=>{
   };
 
     return(
-       <div className='w-full min-h-screen flex justify-center items-start sm:items-center px-2 bg-slate-200'>
-      <div className='w-full sm:w-[90%] md:w-[70%] lg:w-[40%] bg-white rounded-md shadow-lg border border-black p-4'>
-        <p className='text-center text-2xl font-semibold mb-4'>{state}</p>
+       <div className='w-full min-h-screen flex justify-center items-start sm:items-center px-2 bg-slate-100'>
+      <div className='w-full sm:w-[90%] md:w-[70%] lg:w-[40%] bg-white rounded-md shadow-lg p-10'>
+        <span className='text-xl md:text-4xl block pb-2 font-bold text-center bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent animate-pulse'>{state}</span>
 
         <form className='space-y-4 bg-white' onSubmit={handleSubmit}>
 
          {state==="Signup"? <div>
-            <label htmlFor='name' className='block text-lg sm:text-xl mb-1'>Enter Your Name</label>
+            <label htmlFor='name' className='block text-sm font-semibold text-gray-700 mb-2 transition-all duration-500'>Full Name</label>
             <input
               type="text"
               name="username"
@@ -82,12 +116,14 @@ const Register=()=>{
               onChange={changeHandler}
               required
               autoComplete="off"
-              className="w-full p-2 bg-blue-100 rounded-md"
+              className="w-full p-4 bg-gray-50/50 border border-gray-200 rounded-2xl 
+              focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300
+               group-hover:bg-gray-50 placeholder-gray-400"
             />
           </div>:<></>}
 
           <div>
-            <label htmlFor='email' className='block text-lg sm:text-xl mb-1'>Email</label>
+            <label htmlFor='email' className='block text-sm font-semibold text-gray-700 mb-2'>Email Address</label>
             <input
               type="text"
               name="email"
@@ -96,13 +132,14 @@ const Register=()=>{
               onChange={changeHandler}
               required
               autoComplete="off"
-              
-              className="w-full p-2 bg-blue-100 rounded-md"
+              className="w-full p-4 bg-gray-50/50 border border-gray-200 rounded-2xl 
+              focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300
+               group-hover:bg-gray-50 placeholder-gray-400"
             />
           </div>
 
           <div>
-            <label htmlFor='password' className='block text-lg sm:text-xl mb-1'>Password</label>
+            <label htmlFor='password' className='block text-sm font-semibold text-gray-700 mb-2'>Password</label>
             <input
               type="password"
               name="password"
@@ -112,19 +149,21 @@ const Register=()=>{
               required
               autoComplete="off"
               
-              className="w-full p-2 bg-blue-100 rounded-md"
+              className="w-full p-4 bg-gray-50/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 group-hover:bg-gray-50 placeholder-gray-400"
             />
           </div>
 
           <div className='flex justify-center pt-2'>
-            <Button type='submit' colorScheme='blue' size='sm' className='w-full sm:w-auto' onClick={()=>{state==="login"?login():signup()}}>
+            <button type='submit' className='w-fit p-2 px-6 sm:w-auto bg-gradient-to-r rounded-xl from-blue-600 via-purple-600 to-blue-800 text-white ' onClick={()=>{state==="login"?login():signup()}}>
               Continue
-            </Button>
+            </button>
           </div>
+          <div className='pt-2'>
           {state==="Signup"?
           <p>Already have an account? <span onClick={()=>{setState("Login")}} className='text-blue-600 font-bold cursor-pointer'>Login Here</span> </p>:
           <p>Create an account<span onClick={()=>{setState("Signup")}}className='text-blue-600 font-bold cursor-pointer' > Click Here</span> </p>
           }
+          </div>
           
         </form>
       </div>
