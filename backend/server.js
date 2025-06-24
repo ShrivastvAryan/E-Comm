@@ -13,7 +13,7 @@ app.use(cors());
 
 //Database Connection with MongoDb
 
-mongoose.connect('mongodb+srv://asguy29:aryan290605@carcluster.nvwibz1.mongodb.net/?retryWrites=true&w=majority&appName=CarCluster')
+mongoose.connect(process.env.MONGODB_URI)
 
 //Image storage Engine 
 
