@@ -35,7 +35,7 @@ const CategoryPage = () => {
     <div className="p-4">
      <div className="relative mb-12">
     <h1 className="text-2xl md:text-5xl font-bold text-center bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent animate-pulse">
-      New Collections
+       Collections
     </h1>
     <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
   </div>
