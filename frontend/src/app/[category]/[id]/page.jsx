@@ -15,7 +15,7 @@ const ProductPage = () => {
  
    const ChangeCart = async (id) => {
     try {
-    const response = await fetch('http://localhost:5000/addcart', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addcart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const ProductPage = () => {
   useEffect(() => {
   const fetchSingleProduct = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/${category}/products/${id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/${category}/products/${id}`);
       const data = await res.json();
       setProduct(data); // Directly set the product
     } catch (err) {
@@ -187,7 +187,6 @@ const handleAddToCart = () => {
               </div>
             </div>
 
-            {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
               disabled={addedToCart}

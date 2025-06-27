@@ -17,7 +17,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchCategoryProducts = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/${category}/products`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/${category}/products`);
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -52,14 +52,14 @@ const CategoryPage = () => {
            >
              <div className="relative w-full h-96 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl group-hover:shadow-blue-500/25 border border-gray-100 animate-fade-in-up">
                
-               {/* Sale Badge */}
+             
                <div className="absolute top-4 left-4 z-10">
                  <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-12 animate-bounce">
                    SALE
                  </span>
                </div>
      
-               {/* Wishlist Button */}
+            
                <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                  <button className="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-red-500 hover:text-white transition-all duration-300">
                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -68,7 +68,7 @@ const CategoryPage = () => {
                  </button>
                </div>
      
-               {/* Enhanced Image Container */}
+              
                <div className="relative w-full h-[65%] bg-gradient-to-br from-gray-50 to-white flex items-center justify-center overflow-hidden group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-purple-50 transition-all duration-500">
                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                  <Image
@@ -78,38 +78,37 @@ const CategoryPage = () => {
                    className="object-contain transition-transform duration-500 group-hover:scale-110"
                  />
                  
-                 {/* Floating elements */}
+               
                  <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full opacity-60 animate-ping"></div>
                  <div className="absolute bottom-4 right-4 w-1 h-1 bg-purple-400 rounded-full opacity-40 animate-pulse"></div>
                </div>
      
-               {/* Enhanced Product Info */}
+         
                <div className="p-4 bg-gradient-to-t from-white to-gray-50">
                  <h3 className="font-bold text-gray-800 text-sm lg:text-base mb-2 truncate group-hover:text-blue-700 transition-colors duration-300">
                    {items.name}
                  </h3>
                  
-                 {/* Enhanced Price Section */}
+                
                  <div className="flex items-center justify-between">
                    <div className="flex items-center space-x-2">
                      <span className="text-xs text-gray-500 font-medium">MRP:</span>
                      <span className="text-sm text-gray-500 line-through font-medium">₹{items.old_price}</span>
                      <span className="text-lg font-bold text-green-600 animate-pulse">₹{items.new_price}</span>
                    </div>
-                   
-                   {/* Discount Badge */}
+              
                    <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">
                      {Math.round(((items.old_price - items.new_price) / items.old_price) * 100)}% OFF
                    </span>
                  </div>
      
-                 {/* Add to Cart Button - appears on hover */}
+                 
                  <button className="w-full mt-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-lg font-semibold text-sm opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:from-blue-600 hover:to-purple-700 shadow-lg">
                    Add to Cart
                  </button>
                </div>
      
-               {/* Shimmer Effect */}
+             
                <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
              </div>
            </Link>

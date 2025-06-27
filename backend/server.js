@@ -1,4 +1,4 @@
-require("dotenv").config(); // compulsory for .env file
+require("dotenv").config(); 
 const express=require('express');
 const app=express();
 const PORT=5000;
@@ -32,7 +32,7 @@ app.use('/images',express.static('upload'));
 app.post("/upload",upload.single('product'),(req,res)=>{
    res.json({
     success:1,
-    image_url:`http://localhost:${PORT}/images/${req.file.filename}`
+    image_url:`/images/${req.file.filename}`
    })
 });
 

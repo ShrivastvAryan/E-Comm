@@ -16,7 +16,7 @@ const AllProduct = () => {
   const fetchInfo = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/allproducts');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allproducts`);
       const data = await response.json();
       setAllProducts(data);
       setFilteredProducts(data);
@@ -60,7 +60,7 @@ const AllProduct = () => {
   const RemoveProduct = async (id) => {
     try {
       setRemoving(id);
-      const response = await fetch('http://localhost:5000/removeproduct', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/removeproduct`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

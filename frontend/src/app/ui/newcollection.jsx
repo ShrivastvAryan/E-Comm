@@ -6,7 +6,10 @@ import Link from "next/link";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+
 const NewCollection=()=>{
+
+  const URL=process.env.NEXT_PUBLIC_SERVER_URL
 
     const[newcollection,setNewCollection]=useState([]);
     const[popularmen,setPopularMen]=useState([]);
@@ -21,10 +24,10 @@ const NewCollection=()=>{
         const fetchAll=async()=>{
             try {
           const [newData, menData, womenData, kidsData] = await Promise.all([
-          fetch("http://localhost:5000/newcollections").then(res => res.json()),
-          fetch("http://localhost:5000/popularmen").then(res => res.json()),
-          fetch("http://localhost:5000/popularwomen").then(res => res.json()),
-          fetch("http://localhost:5000/popularkids").then(res => res.json()),
+          fetch(`${URL}/newcollections`).then(res => res.json()),
+          fetch(`${URL}/popularmen`).then(res => res.json()),
+          fetch(`${URL}/popularwomen`).then(res => res.json()),
+          fetch(`${URL}/popularkids`).then(res => res.json()),
         ]);
 
         setNewCollection(newData);
