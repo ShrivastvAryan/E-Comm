@@ -74,13 +74,13 @@ const Footer = () => {
               <li>
                 <a href="/category/men" className="text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-300 flex items-center group">
                   <span className="w-2 h-2 bg-indigo-400 rounded-full mr-3 group-hover:bg-cyan-400 transition-colors duration-300"></span>
-                  Men's Fashion
+                  Men&apos;s Fashion
                 </a>
               </li>
               <li>
                 <a href="/category/women" className="text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-300 flex items-center group">
                   <span className="w-2 h-2 bg-indigo-400 rounded-full mr-3 group-hover:bg-cyan-400 transition-colors duration-300"></span>
-                  Women's Fashion
+                  Women&apos; Fashion
                 </a>
               </li>
               <li>
