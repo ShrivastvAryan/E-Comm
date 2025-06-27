@@ -15,6 +15,14 @@ app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI)
 
+app.get('/healthcheck',(req,res)=>{
+    res.json 
+    ({
+        success:true,
+        message:"Backend is working"
+    })
+})
+
 //Image storage Engine 
 
 const storage= multer.diskStorage({
