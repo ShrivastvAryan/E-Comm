@@ -2,9 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Heart, Star, Truck, Shield, RotateCcw, Minus, Plus } from 'lucide-react';
+import { useToast } from '@chakra-ui/react'
 
 
 const ProductPage = () => {
+
+  const toast = useToast()
   const { category, id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -12,25 +15,8 @@ const ProductPage = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
 
- 
-   const ChangeCart = async (id) => {
-    try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addcart`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id:id}),
-    });
 
-    const data = await response.json();
-    alert("Added to Cart")
-    console.log("Cart response:", data);
-  } catch (error) {
-    console.error("Error adding to cart:", error);
-  }
-};
-     const [size, setSize] = useState("M");
+    const [size, setSize] = useState("M");
   
     const sizes = ["XS","S", "M", "L", "XL","XXL"];
   
@@ -49,14 +35,41 @@ const ProductPage = () => {
   if (category && id) fetchSingleProduct();
 }, [category, id]);
 
-const handleAddToCart = () => {
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
-    // Your ChangeCart function here
-    // ChangeCart(product.id, size, quantity);
-  };
+const cart=async()=>{
+  try {
+    const response = await fetch('http://localhost:5000/addcart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: quantity,
+        image: product.image,
+        name: product.name,
+        category: product.category,
+        cloth_type: product.cloth_type,
+        old_price: product.old_price,
+        new_price: product.new_price,
+        size: size
+      }),
+    });
 
-
+    const data = await response.json();
+    if (data.success) {
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
+       toast({
+         position: 'top',
+         title: 'Added to Cart',
+         status: 'success',
+         duration: 5000,
+         isClosable: true,
+         });
+    }
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+  }
+}
 
   if (!product) return <p className="text-center mt-10">Loading...</p>;
 
@@ -84,7 +97,7 @@ const handleAddToCart = () => {
               <img 
                 src={product.image} 
                 alt={product.name}
-                className={`w-full h-full object-cover transition-all duration-1000 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+                className={`w-full h-full object-contain transition-all duration-1000 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
                 onLoad={() => setImageLoaded(true)}
               />
               
@@ -188,7 +201,7 @@ const handleAddToCart = () => {
             </div>
 
             <button
-              onClick={handleAddToCart}
+              onClick={()=>cart()}
               disabled={addedToCart}
               className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] ${
                 addedToCart
@@ -252,4 +265,3 @@ const handleAddToCart = () => {
 };
 
 export default ProductPage;
-

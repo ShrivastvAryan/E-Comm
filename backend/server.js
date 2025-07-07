@@ -6,10 +6,20 @@ const multer =require("multer");
 const path=require('path');
 const cors=require('cors');
 const mongoose=require('mongoose');
+const cloudinary = require('cloudinary').v2;
 const jwt = require('jsonwebtoken');
+const fs =require('fs');
+const { error } = require("console");
 
 app.use(express.json());
 app.use(cors());
+
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 //Database Connection with MongoDb
 
@@ -23,28 +33,39 @@ app.get('/healthcheck',(req,res)=>{
     })
 })
 
-//Image storage Engine 
 
-const storage= multer.diskStorage({
-    destination:'./upload',
-    filename:(req,file,cb)=>{
-        return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-    }
+const storage = multer.diskStorage({
+  destination: './upload',
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+  }
 });
+const upload = multer({ storage: storage });
 
-const upload=multer({storage:storage})
+app.post('/upload', upload.single('product'), async (req, res) => {
+  try {
+    // Upload to Cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'e-comm-products', 
+      transformation: [
+        { width: 880, height: 940, crop: 'auto', gravity: 'auto' } 
+      ]
+    });
 
-//Creating upload endpoint for images
-app.use('/images',express.static('upload'));
+    // Delete local temp file
+    fs.unlinkSync(req.file.path);
 
-app.post("/upload",upload.single('product'),(req,res)=>{
-   res.json({
-    success:1,
-    image_url:`https://e-comm-z0ij.onrender.com/images/${req.file.filename}`
-   })
+    // Send Cloudinary image URL as response
+    res.json({
+      success: 1,
+      image_url: result.secure_url
+    });
+
+  } catch (error) {
+    console.error('Upload to Cloudinary failed:', error);
+    res.status(500).json({ success: 0, message: 'Image upload failed' });
+  }
 });
-
-//Schema for creating Products
 
 const Product=mongoose.model("Product",{
     id:{
@@ -89,6 +110,112 @@ const Product=mongoose.model("Product",{
     },
 })
 
+const Cart=mongoose.model('cart',{
+   cartId:{
+        type:Number,
+        required:true,
+    },
+    name:{
+        type:String,
+        required:true,
+    },
+    image:{
+        type:String,
+        required:true,
+    },
+    category:{
+        type:String,
+        required:true,
+    },
+    cloth_type:{
+        type:String,
+        required:true,
+    },
+    old_price:{
+        type:Number,
+        required:true, 
+    },
+    new_price:{
+        type:Number,
+        required:true,
+    },
+    quantity:{
+        type:Number,
+        default:1,
+    },
+    size:{
+        type:String,
+        required:true,
+    }
+});
+
+
+app.post('/addcart',async(req,res)=>{
+    let cart=await Cart.find({});
+    let cartId;
+    if(cart.length>0){
+        let last_cart_array=cart.slice(-1);
+        let last_cart=last_cart_array[0];
+        cartId=last_cart.cartId+1;
+    }
+    else{
+        cartId=1;
+    }
+
+    const savedcart=new Cart({
+        cartId:cartId,
+        name:req.body.name,
+        image:req.body.image,
+        category:req.body.category,
+        cloth_type:req.body.cloth_type,
+        size:req.body.size,
+        quantity:req.body.quantity,
+        new_price:req.body.new_price,
+        old_price:req.body.old_price,
+
+    });
+
+    console.log(savedcart);
+
+    await savedcart.save();
+    console.log("saved");
+
+    res.json({
+        success:true,
+        name:req.body.name,
+    })
+})
+
+app.get('/cart',async(req,res)=>{
+    try{
+    let cart=await Cart.find({});
+    console.log("Cart fetched");
+    res.send(cart);
+    }
+    catch(error){
+        console.error("Error fetching cart:", error);
+        res.status(500).send({error:"Internal server error"});
+    }
+
+})
+
+app.post('/deletecart',async(req,res)=>{
+    try {
+        const { cartId } = req.body;
+        const deletedCart = await Cart.findOneAndDelete({ cartId: cartId });
+        
+        if (!deletedCart) {
+            return res.status(404).json({ error: "Cart item not found" });
+        }
+        
+        console.log("Cart item deleted");
+        res.json({ success: true, message: "Cart item deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting cart item:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
 app.post ('/addproduct',async(req,res)=>{
     let products=await Product.find({});
     let id;
@@ -100,6 +227,7 @@ app.post ('/addproduct',async(req,res)=>{
     else{
         id=1;
     }
+
     const product=new Product({
         id:id,
         name:req.body.name,
@@ -133,27 +261,6 @@ app.post("/removeproduct",async(req,res)=>{
     })
 })
 
-app.post("/addcart", async (req, res) => {
-
-  try {
-    const { id } = req.body;
-
-    if (!id) {
-      return res.status(400).json({ error: "Product ID is required" });
-    }
-
-    const product = await Product.findOne({ id });
-
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" });
-    }
-
-    res.status(200).json(product);
-  } catch (error) {
-    console.error("Error in /addcart:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 
 //Creating API for getting all products
@@ -278,6 +385,21 @@ app.post('/login', async (req, res) => {
     return res.json({ success: true, token });
 });
 
+app.post('/deletecartItem',async(req,res)=>{
+    const { cartId } = req.body;
+    try {
+       
+        if (!cart) {
+            return res.status(404).json({ error: "Cart not found" });
+        }        
+         const cart = await Cart.findOneAndDelete({ cartId });                                                           
+        
+    } catch (error) {
+        console.error("Error deleting cart item:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
 //creating end point for new collection
 app.get('/newcollections',async(req,res)=>{
     let products=await Product.find({});
@@ -307,6 +429,8 @@ app.get('/popularkids',async(req,res)=>{
     console.log("popular in kids fetched")
     res.send(popularkids)
 })
+
+
 //API creation 
 
 app.get("/",(req,res)=>{

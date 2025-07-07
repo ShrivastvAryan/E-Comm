@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import React from 'react';
-import{CiShoppingCart, CiSearch, CiUser, CiHeart} from "react-icons/ci";
+import{CiShoppingCart} from "react-icons/ci";
 import { DrawerHeader,DrawerBody,DrawerContent,Drawer,DrawerOverlay } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons'
@@ -13,10 +13,23 @@ const Navbar = () => {
   const [token, setToken] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const[isCart,setIsCart]=useState('0')
 
   useEffect(() => {
     setToken(localStorage.getItem('auth-token'));
   }, []);
+
+  const handleCartCount = (count) => {
+    setIsCart(count)
+  };
+
+  useEffect(() => {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`)
+    .then(res => res.json())
+    .then(data => {
+      handleCartCount(data.length); 
+    });
+}, []);
 
   // Add scroll effect
   useEffect(() => {
@@ -119,7 +132,7 @@ const Navbar = () => {
                 <div className="relative w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-300 group">
                   <CiShoppingCart className="text-xl group-hover:scale-110 transition-transform duration-300" />
                   <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 text-white text-xs rounded-full flex items-center justify-center animate-pulse">
-                    2
+                    {isCart}
                   </span>
                 </div>
               </Link>
@@ -137,7 +150,7 @@ const Navbar = () => {
               ) : (
                 <Link href="/register">
                   <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 font-medium hover:scale-105 shadow-lg">
-                    SingUp
+                    SignUp
                   </button>
                 </Link>
               )}

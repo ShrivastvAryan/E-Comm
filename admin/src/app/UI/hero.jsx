@@ -76,8 +76,9 @@ const Hero=()=>{
             })
         }
     }
-    return(
-        <>
+
+return(
+<>
  <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
   <div className="flex flex-col lg:flex-row justify-center items-center">
 

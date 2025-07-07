@@ -1,6 +1,6 @@
 const nextConfig = {
   images: {
-    domains: ['localhost'], // 👈 add this line
+    domains: ['res.cloudinary.com', 'e-comm-z0ij.onrender.com'],
   },
 }
 
