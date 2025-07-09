@@ -101,7 +101,7 @@ const removeItem = async (cartId) => {
             </div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Your cart is empty</h2>
             <p className="text-gray-600 mb-8 text-center max-w-md">
-              Looks like you haven't added any items to your cart yet. Start shopping to fill it up!
+              Looks like you have not added any items to your cart yet. Start shopping to fill it up!
             </p>
             <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/25">
               Continue Shopping
