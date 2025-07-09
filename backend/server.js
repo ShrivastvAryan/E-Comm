@@ -48,7 +48,7 @@ app.post('/upload', upload.single('product'), async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: 'e-comm-products', 
       transformation: [
-        { width: 880, height: 940, crop: 'auto', gravity: 'auto' } 
+        { width: 880, height: 940, crop: 'auto', gravity: 'auto',quality: 'auto', fetch_format: 'auto' } // Resize and optimize image, 
       ]
     });
 
