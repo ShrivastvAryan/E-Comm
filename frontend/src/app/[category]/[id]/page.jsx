@@ -37,7 +37,7 @@ const ProductPage = () => {
 
 const cart=async()=>{
   try {
-    const response = await fetch('http://localhost:5000/addcart', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addcart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

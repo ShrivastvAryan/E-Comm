@@ -98,35 +98,12 @@ const Navbar = () => {
 
         {/* Mobile Sidebar */}
         <div
-          className={`lg:hidden fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 transform transition-transform duration-300 ease-in-out z-50 ${
+          className={`lg:hidden top-0 left-0 h-full w-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 transform transition-transform duration-300 ease-in-out z-50 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           {/* Mobile Sidebar Header */}
           <div className="p-6 border-b border-slate-700">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-8m-5 0H3m2-16h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">Admin Panel</h2>
-                  <p className="text-sm text-slate-400">Product Management</p>
-                </div>
-              </div>
-              
-              {/* Close Button */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors duration-200"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
           </div>
 
           {/* Mobile Navigation Menu */}
